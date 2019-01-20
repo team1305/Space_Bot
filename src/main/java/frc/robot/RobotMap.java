@@ -38,11 +38,13 @@ public class RobotMap {
 
   public static void init() {
 
+    //declares the digital ID of drive motors
     mtDriveLeft1 = new CANSparkMax(0, MotorType.kBrushless);
     mtDriveLeft2 = new CANSparkMax(1, MotorType.kBrushless);
     mtDriveRight1 = new CANSparkMax(2, MotorType.kBrushless);
     mtDriveRight2 = new CANSparkMax(3, MotorType.kBrushless);
 
+    //declares digital ID of drive encoders
     enDriveLeft1 = new CANEncoder(mtDriveLeft1);
     enDriveLeft2 = new CANEncoder(mtDriveLeft2);
     enDriveRight1 = new CANEncoder(mtDriveRight1);
