@@ -34,8 +34,15 @@ public class Subsystem_Drive extends Subsystem {
   private final CANEncoder enRight1 = RobotMap.enDriveRight1;
   private final CANEncoder enRight2 = RobotMap.enDriveRight2;
 
-  //decalres a differential drive
+  // Internal subsystem parts
   private DifferentialDrive drRobotDrive;
+
+  // Subsystem State Value
+  private Double enLeftStart;
+  private Double enRightStart;
+  private Double enLeftCurrent;
+  private Double enRightCurrent;
+  
 
   public Subsystem_Drive() {
 
@@ -67,5 +74,33 @@ public class Subsystem_Drive extends Subsystem {
   public void driveStop() {
 
     drRobotDrive.arcadeDrive(0, 0);
+  }
+
+  public Double getleftEncederValue() {
+    Double enCode1 = enLeft1.getPosition();
+    Double enCode2 = enLeft2.getPosition();
+    if (enCode1 == enCode2){
+      return enCode1 - enLeftStart;
+    }else{
+      System.out.println("Left encoder1:" + enCode1.toString() + " encoder2:" + enCode2.toString());
+      return Math.max(enCode1, enCode2) - enLeftStart;
+    }
+  }
+
+  public Double getRightEncederValue() {
+    Double enCode1 = enRight1.getPosition();
+    Double enCode2 = enRight2.getPosition();
+    if (Math.abs(enCode1) == Math.abs(enCode2)){
+      return enCode1 - enRightStart;
+    }else{
+      System.out.println("Left encoder1:" + enCode1.toString() + " encoder2:" + enCode2.toString());
+      return Math.max(enCode1, enCode2) - enRightStart;
+    }
+  }
+
+  public Boolean resetEncoder(){
+    enLeftStart = getleftEncederValue();
+    enRightStart = getRightEncederValue();
+    return true;
   }
 }
