@@ -22,10 +22,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class RobotMap {
   
   //declares motor controllers used
-  public static CANSparkMax mtDriveLeft1;
-  public static CANSparkMax mtDriveLeft2;
-  public static CANSparkMax mtDriveRight1;
-  public static CANSparkMax mtDriveRight2;
+  public static CANSparkMax mtDriveLeft1 = new CANSparkMax(1, MotorType.kBrushless);
+  public static CANSparkMax mtDriveLeft2 = new CANSparkMax(2, MotorType.kBrushless);
+  public static CANSparkMax mtDriveRight1 = new CANSparkMax(3, MotorType.kBrushless);
+  public static CANSparkMax mtDriveRight2 = new CANSparkMax(4, MotorType.kBrushless);
+
 
   //declares encoders for motor controllers
   public static CANEncoder enDriveLeft1;
@@ -33,16 +34,9 @@ public class RobotMap {
   public static CANEncoder enDriveRight1;
   public static CANEncoder enDriveRight2;
 
-  //declares robot drive variable
-  public static DifferentialDrive drRobotDrive;
-
   public static void init() {
 
-    //declares the digital ID of drive motors
-    mtDriveLeft1 = new CANSparkMax(0, MotorType.kBrushless);
-    mtDriveLeft2 = new CANSparkMax(1, MotorType.kBrushless);
-    mtDriveRight1 = new CANSparkMax(2, MotorType.kBrushless);
-    mtDriveRight2 = new CANSparkMax(3, MotorType.kBrushless);
+    mtDriveLeft1.getInverted();
 
     //declares digital ID of drive encoders
     enDriveLeft1 = new CANEncoder(mtDriveLeft1);

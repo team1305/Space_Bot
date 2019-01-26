@@ -11,6 +11,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -34,8 +35,14 @@ public class Subsystem_Drive extends Subsystem {
   private final CANEncoder enRight1 = RobotMap.enDriveRight1;
   private final CANEncoder enRight2 = RobotMap.enDriveRight2;
 
-  // Internal subsystem parts
-  private DifferentialDrive drRobotDrive;
+  //creates motor controller groups for left and right motors
+  SpeedControllerGroup scgLeft = new SpeedControllerGroup(mtLeft1, mtLeft2);
+  SpeedControllerGroup scgRight = new SpeedControllerGroup(mtRight1, mtRight2);
+
+  // Internal subsystem parts, declares left and right motor groups used by differential drive
+  DifferentialDrive drRobotDrive = new DifferentialDrive(scgLeft, scgRight);
+
+  
 
   // Subsystem State Value
   private Double enLeftStart;
@@ -46,12 +53,6 @@ public class Subsystem_Drive extends Subsystem {
 
   public Subsystem_Drive() {
 
-    //creates motor controller groups for left and right motors
-    SpeedControllerGroup scgLeft = new SpeedControllerGroup(mtLeft1, mtLeft2);
-    SpeedControllerGroup scgRight = new SpeedControllerGroup(mtRight1, mtRight2);
-
-    //declares left and right motor groups used by differential drive
-    DifferentialDrive drRobotDrive = new DifferentialDrive(scgLeft, scgRight);
   }
 
   @Override
