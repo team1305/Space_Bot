@@ -11,6 +11,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -22,17 +23,22 @@ import frc.robot.commands.Command_Drive_With_Joystick;
  */
 public class Subsystem_Drive extends Subsystem {
 
+  private boolean bIsHigh = false;
+
   //grabs drive motor information from RobotMap
   private final CANSparkMax mtLeft1 = RobotMap.mtDriveLeft1;
   private final CANSparkMax mtLeft2 = RobotMap.mtDriveLeft2;
   private final CANSparkMax mtRight1 = RobotMap.mtDriveRight1;
   private final CANSparkMax mtRight2 = RobotMap.mtDriveRight2;
 
-  //graps drive encoder information from RobotMap
+  //grabs drive encoder information from RobotMap
   private final CANEncoder enLeft1 = RobotMap.enDriveLeft1;
   private final CANEncoder enLeft2 = RobotMap.enDriveLeft2;
   private final CANEncoder enRight1 = RobotMap.enDriveRight1;
   private final CANEncoder enRight2 = RobotMap.enDriveRight2;
+
+  //grabs solenoid for gear shifting
+  private final Solenoid slndShift = RobotMap.slndGearShifter;
 
   //creates motor controller groups for left and right motors
   SpeedControllerGroup scgLeft = new SpeedControllerGroup(mtLeft1, mtLeft2);
@@ -41,15 +47,12 @@ public class Subsystem_Drive extends Subsystem {
   // Internal subsystem parts, declares left and right motor groups used by differential drive
   DifferentialDrive drRobotDrive = new DifferentialDrive(scgLeft, scgRight);
 
-  
-
   // Subsystem State Value
   private Double enLeftStart;
   private Double enRightStart;
   private Double enLeftCurrent;
   private Double enRightCurrent;
   
-
   public Subsystem_Drive() {
 
   }
@@ -76,6 +79,23 @@ public class Subsystem_Drive extends Subsystem {
     drRobotDrive.arcadeDrive(0, 0);
   }
 
+  public void LowGear() {
+    this.slndShift.set(false);
+    bIsHigh = false;
+  }
+
+  public void HighGear() {
+    this.slndShift.set(true);
+    bIsHigh = true;
+  }
+
+  public void toggleGear() {
+    if (bIsHigh) {
+      LowGear();
+    } else {
+      HighGear();
+    }
+  }
   public Double getleftEncederValue() {
     Double enCode1 = enLeft1.getPosition();
     Double enCode2 = enLeft2.getPosition();

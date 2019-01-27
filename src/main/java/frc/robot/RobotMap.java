@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -35,9 +36,14 @@ public class RobotMap {
   public static CANEncoder enDriveRight1 = new CANEncoder(mtDriveRight1);
   public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
 
+  //declares compressor port
   public static Compressor cmpRobotCompressor = new Compressor(0);
 
+  //declares digital id for tower motor 
   public static WPI_TalonSRX mtTowerRotate = new WPI_TalonSRX(0);
+
+  //declares port number of gear shift solenoid
+  public static Solenoid slndGearShifter = new Solenoid(4);
 
   public static void init() {
 
