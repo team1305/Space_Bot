@@ -28,9 +28,16 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void RotatePower(double power) {
+  public void TowerStop() {
+    mtRotate.set(0);
+  }
 
-    mtRotate.set(power* TOWERPOWERCONSTANT);
+  public void TowerLeft() {
+    mtRotate.set(0.3);
+  }
+
+  public void TowerRight() {
+    mtRotate.set(-0.3);
   }
 
 }

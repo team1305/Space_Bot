@@ -24,7 +24,16 @@ public class Command_Tower_Loop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.tower.RotatePower(Robot.oi.getJoystickDriver().getRawAxis(6));
+    if (Robot.oi.getJoystickDriver().getPOV() == 270) {
+
+      Robot.tower.TowerLeft();
+    } else if (Robot.oi.getJoystickDriver().getPOV() == 90) {
+
+      Robot.tower.TowerRight();
+    } else {
+
+      Robot.tower.TowerStop();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,5 +51,7 @@ public class Command_Tower_Loop extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+
+    Robot.tower.TowerStop();
   }
 }
