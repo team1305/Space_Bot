@@ -14,7 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Subsystem_Compressor_Power;
 import frc.robot.subsystems.Subsystem_Drive;
+import frc.robot.subsystems.Subsystem_Tower_Rotation;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +30,8 @@ public class Robot extends TimedRobot {
   //declares subsystem variables so commands can access subsystems
   public static ExampleSubsystem subsystem = new ExampleSubsystem();
   public static Subsystem_Drive drive = new Subsystem_Drive();
+  public static Subsystem_Compressor_Power compressor = new Subsystem_Compressor_Power();
+  public static Subsystem_Tower_Rotation tower = new Subsystem_Tower_Rotation();
   public static OI oi;
 
   Command m_autonomousCommand;

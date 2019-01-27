@@ -7,11 +7,12 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -21,29 +22,28 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
  */
 public class RobotMap {
   
-  //declares motor controllers used
+  //declares motor controllers used and digital ID of motor
   public static CANSparkMax mtDriveLeft1 = new CANSparkMax(1, MotorType.kBrushless);
   public static CANSparkMax mtDriveLeft2 = new CANSparkMax(2, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight1 = new CANSparkMax(3, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight2 = new CANSparkMax(4, MotorType.kBrushless);
 
 
-  //declares encoders for motor controllers
-  public static CANEncoder enDriveLeft1;
-  public static CANEncoder enDriveLeft2;
-  public static CANEncoder enDriveRight1;
-  public static CANEncoder enDriveRight2;
+  //declares encoders for motor controllers and motors connected to encoder
+  public static CANEncoder enDriveLeft1 = new CANEncoder(mtDriveLeft1);
+  public static CANEncoder enDriveLeft2 = new CANEncoder(mtDriveLeft2);
+  public static CANEncoder enDriveRight1 = new CANEncoder(mtDriveRight1);
+  public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
+
+  public static Compressor cmpRobotCompressor = new Compressor(0);
+
+  public static WPI_TalonSRX mtTowerRotate = new WPI_TalonSRX(0);
 
   public static void init() {
 
+    //reverses left1 because for some reason it is the only one
+    // the does not go the same direction
     mtDriveLeft1.getInverted();
-
-    //declares digital ID of drive encoders
-    enDriveLeft1 = new CANEncoder(mtDriveLeft1);
-    enDriveLeft2 = new CANEncoder(mtDriveLeft2);
-    enDriveRight1 = new CANEncoder(mtDriveRight1);
-    enDriveRight2 = new CANEncoder(mtDriveRight2);
-
     
     
   }
