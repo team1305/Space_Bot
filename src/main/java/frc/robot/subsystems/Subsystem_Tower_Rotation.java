@@ -10,8 +10,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.Command_Tower_Loop;
 
 /**
  * Add your docs here.
@@ -20,12 +20,11 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   
   private final WPI_TalonSRX mtRotate = RobotMap.mtTowerRotate;
 
-  private static double TOWERPOWERCONSTANT = 0.1;
+  private static double TOWERPOWERCONSTANT = 0.5;
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new Command_Tower_Loop());
   }
 
   public void TowerStop() {
@@ -33,11 +32,11 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   }
 
   public void TowerLeft() {
-    mtRotate.set(0.3);
+    mtRotate.set(TOWERPOWERCONSTANT);
   }
 
   public void TowerRight() {
-    mtRotate.set(-0.3);
+    mtRotate.set(-TOWERPOWERCONSTANT);
   }
 
 }

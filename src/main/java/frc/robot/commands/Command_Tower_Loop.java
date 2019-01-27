@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class Command_Tower_Loop extends Command {
@@ -24,6 +25,7 @@ public class Command_Tower_Loop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    SmartDashboard.putNumber("POV", Robot.oi.getJoystickDriver().getPOV());
     if (Robot.oi.getJoystickDriver().getPOV() == 270) {
 
       Robot.tower.TowerLeft();
