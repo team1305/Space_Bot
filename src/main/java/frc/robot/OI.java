@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Command_Compressor_OFF;
 import frc.robot.commands.Command_Compressor_ON;
+import frc.robot.commands.Command_Shift_Gear;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -45,7 +46,7 @@ public class OI {
     //btn1_RB.whileHeld(new Cmd_Camera_Track());//xbox "RB" Button 6
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7
     btn1_Start.whenPressed(new Command_Compressor_ON());//xbox "Start" Button 8
-    //btn1_LS.whileHeld(new Cmd_LED_Blink());//xbox "Left Stick Click" Button 9
+    btn1_LS.whenPressed(new Command_Shift_Gear());//xbox "Left Stick Click" Button 9
     //btn1_RS.whileHeld(new Cmd_LED_Blink());//xbox "Right Stick Click" Button 10
     ////xbox "X Axis" Left Stick - 
     ////xbox "Y Axis" Left Stick - Drive Forward and Reverse
