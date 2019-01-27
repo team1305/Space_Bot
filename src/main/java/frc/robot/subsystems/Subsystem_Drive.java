@@ -65,7 +65,7 @@ public class Subsystem_Drive extends Subsystem {
   }
 
   private double JoystickDeadBand(double input) {
-    if(Math.abs(input) < 0.15) return 0;
+    if(Math.abs(input) < 0.2) return 0;
     else return input;
   }
   public void driveWithJoystick(Joystick stick) {
