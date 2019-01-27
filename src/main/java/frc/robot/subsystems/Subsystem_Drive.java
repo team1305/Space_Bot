@@ -64,11 +64,15 @@ public class Subsystem_Drive extends Subsystem {
     setDefaultCommand(new Command_Drive_With_Joystick());
   }
 
+  private double JoystickDeadBand(double input) {
+    if(Math.abs(input) < 0.1) return 0;
+    else return input;
+  }
   public void driveWithJoystick(Joystick stick) {
 
     //creates variables for joystick x and y values
-    double zRotation = stick.getRawAxis(4)* -1;
-    double xSpeed = stick.getY()* 1;
+    double zRotation = JoystickDeadBand(stick.getRawAxis(4)* -1);
+    double xSpeed = JoystickDeadBand(stick.getY()* 1);
 
     //uses joystick
     drRobotDrive.curvatureDrive(xSpeed, zRotation, true);
