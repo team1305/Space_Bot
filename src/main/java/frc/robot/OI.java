@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Command_Compressor_OFF;
 import frc.robot.commands.Command_Compressor_ON;
+import frc.robot.commands.Command_Intake;
+import frc.robot.commands.Command_Out_Take;
+import frc.robot.commands.Command_Outtake;
 import frc.robot.commands.Command_Shift_Gear;
 
 /**
@@ -42,8 +45,8 @@ public class OI {
     //btn1_B.whileHeld(new NeoMove());//xbox "B" Button 2
     //btn1_X.whileHeld(new Cmd_Intake_Out());//xbox "X" Button 3
     //btn1_Y.whileHeld(new Cmd_Intake_In());//xbox "Y" Button 4
-    //btn1_LB.whileHeld(new Cmd_Intake_Out());//xbox "LB" Button 5
-    //btn1_RB.whileHeld(new Cmd_Camera_Track());//xbox "RB" Button 6
+    btn1_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
+    btn1_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7
     btn1_Start.whenPressed(new Command_Compressor_ON());//xbox "Start" Button 8
     btn1_B.whenPressed(new Command_Shift_Gear());//xbox "Left Stick Click" Button 9

@@ -23,11 +23,12 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class RobotMap {
   
-  //declares motor controllers used and digital ID of motor
+  //declares sparkmax motor controllers used and digital ID of motor
   public static CANSparkMax mtDriveLeft1 = new CANSparkMax(1, MotorType.kBrushless);
   public static CANSparkMax mtDriveLeft2 = new CANSparkMax(2, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight1 = new CANSparkMax(3, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight2 = new CANSparkMax(4, MotorType.kBrushless);
+  public static CANSparkMax mtIntake = new CANSparkMax(7, MotorType.kBrushless);
 
 
   //declares encoders for motor controllers and motors connected to encoder

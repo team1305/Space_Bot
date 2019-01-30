@@ -16,6 +16,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Subsystem_Compressor_Power;
 import frc.robot.subsystems.Subsystem_Drive;
+import frc.robot.subsystems.Subsystem_Intake;
 import frc.robot.subsystems.Subsystem_Tower_Rotation;
 
 /**
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
   public static Subsystem_Drive drive = new Subsystem_Drive();
   public static Subsystem_Compressor_Power compressor = new Subsystem_Compressor_Power();
   public static Subsystem_Tower_Rotation tower = new Subsystem_Tower_Rotation();
+  public static Subsystem_Intake intake = new Subsystem_Intake();
   public static OI oi;
 
   Command m_autonomousCommand;
