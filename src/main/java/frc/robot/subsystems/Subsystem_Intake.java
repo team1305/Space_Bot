@@ -26,11 +26,11 @@ public class Subsystem_Intake extends Subsystem {
   }
 
   public void Intake() {
-    mtIntake.set(0.5);
+    mtIntake.set(-1.0);
   }
 
   public void Outtake() {
-    mtIntake.set(0.5);
+    mtIntake.set(1.0);
   }
 
   public void IntakeStop() {
