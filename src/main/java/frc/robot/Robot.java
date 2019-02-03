@@ -18,6 +18,7 @@ import frc.robot.subsystems.Subsystem_Compressor_Power;
 import frc.robot.subsystems.Subsystem_Drive;
 import frc.robot.subsystems.Subsystem_Intake;
 import frc.robot.subsystems.Subsystem_Tower_Rotation;
+import frc.robot.subsystems.Subsystem_Winch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
   public static Subsystem_Compressor_Power compressor = new Subsystem_Compressor_Power();
   public static Subsystem_Tower_Rotation tower = new Subsystem_Tower_Rotation();
   public static Subsystem_Intake intake = new Subsystem_Intake();
+  public static Subsystem_Winch winch = new Subsystem_Winch();
   public static OI oi;
 
   Command m_autonomousCommand;

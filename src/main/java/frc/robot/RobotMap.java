@@ -28,8 +28,8 @@ public class RobotMap {
   public static CANSparkMax mtDriveLeft2 = new CANSparkMax(2, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight1 = new CANSparkMax(3, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight2 = new CANSparkMax(4, MotorType.kBrushless);
-  public static CANSparkMax mtWinchLeft = new CANSparkMax(5, MotorType.kBrushless);
-  public static CANSparkMax mtWinchRight = new CANSparkMax(6, MotorType.kBrushless);
+  public static CANSparkMax mtWinch1 = new CANSparkMax(5, MotorType.kBrushless);
+  public static CANSparkMax mtWinch2 = new CANSparkMax(6, MotorType.kBrushless);
   public static CANSparkMax mtIntake = new CANSparkMax(7, MotorType.kBrushless);
 
   //declares encoders for motor controllers and motors connected to encoder
