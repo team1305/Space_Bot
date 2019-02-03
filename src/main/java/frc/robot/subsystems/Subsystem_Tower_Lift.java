@@ -16,9 +16,11 @@ import frc.robot.RobotMap;
  */
 public class Subsystem_Tower_Lift extends Subsystem {
 
+  //creates boolean variables to determine tower state
   private boolean bTowerLowerIsUp = false;
   private boolean bTowerUpperIsUp = false;
   
+  //grabs device ID from robotmap
   public final Solenoid slndTower1 = RobotMap.slndTowerStage1;
   public final Solenoid slndTower2 = RobotMap.slndTowerStage2;
 
@@ -28,26 +30,32 @@ public class Subsystem_Tower_Lift extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  //Changes tower lower level to true and extends the pnuematic
   public void Level1Up() {
     this.slndTower1.set(true);
     bTowerLowerIsUp = true;
   }
 
+  //Changes tower lower level to false and retracts the pnuematic
   public void Level1Down() {
     this.slndTower1.set(false);
     bTowerLowerIsUp = false;
   }
 
+  //Changes tower upper level to true and extends the pnuematic
   public void Level2Up() {
     this.slndTower2.set(true);
     bTowerUpperIsUp = true;
   }
 
+  //Changes tower upper level to true and retracts the pnuematic
   public void Level2Down() {
     this.slndTower2.set(false);
     bTowerUpperIsUp = false;
   }
 
+  //checks to see if the first level is extended and if not extends it
+  //if already extended extends second level
   public void TowerUp() {
     if (bTowerLowerIsUp == false) {
       Level1Up();
@@ -56,6 +64,8 @@ public class Subsystem_Tower_Lift extends Subsystem {
     }
   }
 
+  //checks to see if the first level is extended and if so retracts it
+  //if already retracted retracts second level
   public void TowerDown() {
     if (bTowerUpperIsUp == true) {
       Level2Down();

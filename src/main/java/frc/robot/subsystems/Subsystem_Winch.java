@@ -17,6 +17,7 @@ import frc.robot.RobotMap;
  */
 public class Subsystem_Winch extends Subsystem {
   
+  //grabs device ID from robotmap
   private final CANSparkMax mtWinch1 = RobotMap.mtWinch1;
   private final CANSparkMax mtWinch2 = RobotMap.mtWinch2;
 
@@ -26,11 +27,19 @@ public class Subsystem_Winch extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  //Turns motors to winch climb up
   public void Winch() {
     mtWinch1.set(0.5);
     mtWinch2.set(0.5);
   }
 
+  //Turns motors to unwinch climb for testing
+  public void unWinch() {
+    mtWinch1.set(-0.5);
+    mtWinch2.set(-0.5);
+  }
+
+  //stops motors, stopping climbing
   public void Stop() {
     mtWinch1.set(0.0);
     mtWinch2.set(0.0);

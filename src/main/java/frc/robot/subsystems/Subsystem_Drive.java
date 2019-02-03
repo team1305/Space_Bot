@@ -53,6 +53,7 @@ public class Subsystem_Drive extends Subsystem {
   private Double enLeftCurrent;
   private Double enRightCurrent;
   
+  //does absolutely nothing... as of now
   public Subsystem_Drive() {
 
   }
@@ -64,35 +65,43 @@ public class Subsystem_Drive extends Subsystem {
     setDefaultCommand(new Command_Drive_With_Joystick());
   }
 
+  //creates a deadband for the joystick so that the robot does not spin
+  // when nobody is touching the controls
   private double JoystickDeadBand(double input) {
     if(Math.abs(input) < 0.2) return 0;
     else return input;
   }
+
+  //creates a driving function using specified joystick
   public void driveWithJoystick(Joystick stick) {
 
     //creates variables for joystick x and y values
     double zRotation = JoystickDeadBand(stick.getRawAxis(4)* -1);
     double xSpeed = JoystickDeadBand(stick.getY()* 1);
 
-    //uses joystick
+    //uses joystick to do driving thing
     drRobotDrive.curvatureDrive(xSpeed, zRotation, true);
   }
 
+  //stops the drive train
   public void driveStop() {
 
     drRobotDrive.arcadeDrive(0, 0);
   }
 
+  //shifts drive train to low gear
   public void LowGear() {
     this.slndShift.set(false);
     bIsHigh = false;
   }
 
+  //shifts drive train to high gear
   public void HighGear() {
     this.slndShift.set(true);
     bIsHigh = true;
   }
 
+  //toggles gear state
   public void toggleGear() {
     if (bIsHigh) {
       LowGear();
@@ -100,6 +109,8 @@ public class Subsystem_Drive extends Subsystem {
       HighGear();
     }
   }
+
+  //gets encoder position for the left side
   public Double getleftEncederValue() {
     Double enCode1 = enLeft1.getPosition();
     Double enCode2 = enLeft2.getPosition();
@@ -111,6 +122,7 @@ public class Subsystem_Drive extends Subsystem {
     }
   }
 
+  //gets the encoder position for the right side
   public Double getRightEncederValue() {
     //greenjamesag@gmail.com
     Double enCode1 = enRight1.getPosition();
@@ -123,6 +135,7 @@ public class Subsystem_Drive extends Subsystem {
     }
   }
 
+  //resets encoders to current value
   public Boolean resetEncoder(){
     enLeftStart = getleftEncederValue();
     enRightStart = getRightEncederValue();

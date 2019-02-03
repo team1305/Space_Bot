@@ -18,40 +18,50 @@ import frc.robot.RobotMap;
  */
 public class Subsystem_Intake extends Subsystem {
 
+  //creates variables to determine if hatch is grabbed and state of intake wrist
   private boolean bWristIsUp = true;
   private boolean bHatchGrabbed = false;
 
+  //grabs device IDs from robotmap
   private final CANSparkMax mtIntake = RobotMap.mtIntake;
   private final Solenoid slndWrist = RobotMap.slndIntakeMove;
   private final Solenoid slndHatch = RobotMap.slndHatchIntake;
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  //sets intake to half power
+  //negative because they mounted it backwards
   public void Intake() {
-    mtIntake.set(-1.0);
+    mtIntake.set(-0.5);
   }
 
+  //sets intake to half power for intaking
   public void Outtake() {
-    mtIntake.set(1.0);
+    mtIntake.set(0.5);
   }
 
+  //stops intake movement
   public void IntakeStop() {
     mtIntake.set(0.0);
   }
 
+  //rotates wrist up
   public void WristUp() {
     this.slndWrist.set(true);
     bWristIsUp = true;
   }
 
+  //rotates wrist down
   public void WristDown() {
     this.slndWrist.set(false);
     bWristIsUp = false;
   }
 
+  //toggles wrist movement
   public void ToggleWrist() {
     if (bWristIsUp) {
       WristDown();
@@ -60,16 +70,19 @@ public class Subsystem_Intake extends Subsystem {
     }
   }
 
+  //extends pnuematic to grab hatch
   public void GrabHatch() {
     this.slndHatch.set(false);
     bHatchGrabbed = false;
   }
 
+  //retracts pnuematic to lower hatch
   public void DropHatch() {
     this.slndHatch.set(true);
     bHatchGrabbed = true;
   }
 
+  //toggles hatch grabber
   public void ToggleHatchGrabber() {
     if (bHatchGrabbed) {
       DropHatch();
