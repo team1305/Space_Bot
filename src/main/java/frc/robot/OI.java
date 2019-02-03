@@ -15,6 +15,10 @@ import frc.robot.commands.Command_Compressor_ON;
 import frc.robot.commands.Command_Intake;
 import frc.robot.commands.Command_Outtake;
 import frc.robot.commands.Command_Shift_Gear;
+import frc.robot.commands.Command_Toggle_Hatch;
+import frc.robot.commands.Command_Toggle_Wrist;
+import frc.robot.commands.Command_Unwinch;
+import frc.robot.commands.Command_Winch;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,10 +44,10 @@ public class OI {
   public OI() {
  
     // Primary Driver Stick
-    //btn1_A.whenPressed(new Cmd_Arm_Toggle());//xbox "A" Button 1
-    //btn1_B.whileHeld(new NeoMove());//xbox "B" Button 2
-    //btn1_X.whileHeld(new Cmd_Intake_Out());//xbox "X" Button 3
-    //btn1_Y.whileHeld(new Cmd_Intake_In());//xbox "Y" Button 4
+    btn1_A.whenPressed(new Command_Toggle_Wrist());//xbox "A" Button 1
+    btn1_B.whileHeld(new Command_Toggle_Hatch());//xbox "B" Button 2
+    btn1_X.whileHeld(new Command_Winch());//xbox "X" Button 3
+    btn1_Y.whileHeld(new Command_Unwinch());//xbox "Y" Button 4
     btn1_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
     btn1_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7
@@ -56,10 +60,10 @@ public class OI {
     ////xbox "Y Axis 4" Right Stick - Drive Left and Right
     ////xbox "Axis 3" Left Trigger - 
     ////xbox "Axis 3" Right Trigger - 
-    ////xbox "Up" Direction Pad - 
-    ////xbox "Down" Direction Pad - 
-    ////xbox "Left" Direction Pad - 
-    ////xbox "Right" Direction Pad - 
+    ////xbox "Up" Direction Pad - Tower up
+    ////xbox "Down" Direction Pad - Tower down
+    ////xbox "Left" Direction Pad - Tower Left
+    ////xbox "Right" Direction Pad - Tower Right
   }
   
   //returns joyxbox1 whenever getJoystickDriver is called
