@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -17,8 +18,12 @@ import frc.robot.RobotMap;
  */
 public class Subsystem_Intake extends Subsystem {
 
-  private final CANSparkMax mtIntake = RobotMap.mtIntake;
+  private boolean bWristIsUp = true;
+  private boolean bHatchGrabbed = false;
 
+  private final CANSparkMax mtIntake = RobotMap.mtIntake;
+  private final Solenoid slndWrist = RobotMap.slndIntakeMove;
+  private final Solenoid slndHatch = RobotMap.slndHatchIntake;
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -35,5 +40,41 @@ public class Subsystem_Intake extends Subsystem {
 
   public void IntakeStop() {
     mtIntake.set(0.0);
+  }
+
+  public void WristUp() {
+    this.slndWrist.set(true);
+    bWristIsUp = true;
+  }
+
+  public void WristDown() {
+    this.slndWrist.set(false);
+    bWristIsUp = false;
+  }
+
+  public void ToggleWrist() {
+    if (bWristIsUp) {
+      WristDown();
+    } else {
+      WristUp();
+    }
+  }
+
+  public void GrabHatch() {
+    this.slndHatch.set(false);
+    bHatchGrabbed = false;
+  }
+
+  public void DropHatch() {
+    this.slndHatch.set(true);
+    bHatchGrabbed = true;
+  }
+
+  public void ToggleHatchGrabber() {
+    if (bHatchGrabbed) {
+      DropHatch();
+    } else {
+      GrabHatch();
+    }
   }
 }

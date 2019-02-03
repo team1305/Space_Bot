@@ -10,12 +10,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Command_Shift_Gear extends Command {
+public class Command_Toggle_Wrist extends Command {
 
   private boolean bIsFinished = false;
 
-  public Command_Shift_Gear() {   
-    requires(Robot.drive);
+  public Command_Toggle_Wrist() {
+    requires(Robot.intake);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +27,7 @@ public class Command_Shift_Gear extends Command {
   @Override
   protected void execute() {
     bIsFinished = false;
-    Robot.drive.toggleGear();
+    Robot.intake.ToggleWrist();
     bIsFinished = true;
   }
 
@@ -46,6 +46,6 @@ public class Command_Shift_Gear extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drive.LowGear();
+    Robot.intake.WristUp();
   }
 }

@@ -28,8 +28,9 @@ public class RobotMap {
   public static CANSparkMax mtDriveLeft2 = new CANSparkMax(2, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight1 = new CANSparkMax(3, MotorType.kBrushless);
   public static CANSparkMax mtDriveRight2 = new CANSparkMax(4, MotorType.kBrushless);
+  public static CANSparkMax mtWinchLeft = new CANSparkMax(5, MotorType.kBrushless);
+  public static CANSparkMax mtWinchRight = new CANSparkMax(6, MotorType.kBrushless);
   public static CANSparkMax mtIntake = new CANSparkMax(7, MotorType.kBrushless);
-
 
   //declares encoders for motor controllers and motors connected to encoder
   public static CANEncoder enDriveLeft1 = new CANEncoder(mtDriveLeft1);
@@ -43,8 +44,12 @@ public class RobotMap {
   //declares digital id for tower motor 
   public static WPI_TalonSRX mtTowerRotate = new WPI_TalonSRX(0);
 
-  //declares port number of gear shift solenoid
+  //declares port number of solenoid
   public static Solenoid slndGearShifter = new Solenoid(4);
+  public static Solenoid slndTowerStage1 = new Solenoid(0);
+  public static Solenoid slndTowerStage2 = new Solenoid(0);
+  public static Solenoid slndIntakeMove = new Solenoid(0);
+  public static Solenoid slndHatchIntake = new Solenoid(0);
 
   public static void init() {
 
