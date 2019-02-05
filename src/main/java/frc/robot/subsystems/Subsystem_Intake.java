@@ -72,14 +72,14 @@ public class Subsystem_Intake extends Subsystem {
 
   //extends pnuematic to grab hatch
   public void GrabHatch() {
-    this.slndHatch.set(false);
-    bHatchGrabbed = false;
+    this.slndHatch.set(true);
+    bHatchGrabbed = true;
   }
 
   //retracts pnuematic to lower hatch
   public void DropHatch() {
-    this.slndHatch.set(true);
-    bHatchGrabbed = true;
+    this.slndHatch.set(false);
+    bHatchGrabbed = false;
   }
 
   //toggles hatch grabber

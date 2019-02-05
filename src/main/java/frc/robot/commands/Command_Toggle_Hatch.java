@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class Command_Toggle_Hatch extends Command {
 
-private boolean bIsFinished = false;
+  private boolean bIsFinished = false;
 
   public Command_Toggle_Hatch() {
     requires(Robot.intake);

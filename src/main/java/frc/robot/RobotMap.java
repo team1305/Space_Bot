@@ -45,18 +45,13 @@ public class RobotMap {
   public static WPI_TalonSRX mtTowerRotate = new WPI_TalonSRX(0);
 
   //declares port number of solenoid
-  public static Solenoid slndGearShifter = new Solenoid(4);
-  public static Solenoid slndTowerStage1 = new Solenoid(0);
-  public static Solenoid slndTowerStage2 = new Solenoid(0);
-  public static Solenoid slndIntakeMove = new Solenoid(0);
-  public static Solenoid slndHatchIntake = new Solenoid(0);
+  public static Solenoid slndGearShifter = new Solenoid(3);
+  public static Solenoid slndTowerStage1 = new Solenoid(5);
+  public static Solenoid slndTowerStage2 = new Solenoid(6);
+  public static Solenoid slndIntakeMove = new Solenoid(2);
+  public static Solenoid slndHatchIntake = new Solenoid(4);
 
-  public static void init() {
-
-    //reverses left1 because for some reason it is the only one
-    // the does not go the same direction
-    mtDriveLeft1.getInverted();
-    
+  public static void init() {    
     
   }
 
