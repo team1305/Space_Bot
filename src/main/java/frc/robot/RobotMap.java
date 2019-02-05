@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.CANifier;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
@@ -38,6 +40,9 @@ public class RobotMap {
   public static CANEncoder enDriveRight1 = new CANEncoder(mtDriveRight1);
   public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
 
+  //declares CANifier for LED control
+  public static CANifier RGBLEDController = new CANifier(20);
+
   //declares compressor port
   public static Compressor cmpRobotCompressor = new Compressor(0);
 
@@ -52,7 +57,9 @@ public class RobotMap {
   public static Solenoid slndHatchIntake = new Solenoid(4);
 
   public static void init() {    
-    
+
+    //because the tower likes to spin
+    mtTowerRotate.setNeutralMode(NeutralMode.Brake);
   }
 
 

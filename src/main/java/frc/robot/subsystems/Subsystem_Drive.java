@@ -23,7 +23,8 @@ import frc.robot.commands.Command_Drive_With_Joystick;
  */
 public class Subsystem_Drive extends Subsystem {
 
-  private boolean bIsHigh = false;
+  //boolean for checking gear shift state
+  public boolean bIsHigh = false;
 
   //grabs drive motor information from RobotMap
   private final CANSparkMax mtLeft1 = RobotMap.mtDriveLeft1;

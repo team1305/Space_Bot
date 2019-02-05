@@ -17,6 +17,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Subsystem_Compressor_Power;
 import frc.robot.subsystems.Subsystem_Drive;
 import frc.robot.subsystems.Subsystem_Intake;
+import frc.robot.subsystems.Subsystem_RGBLED_CAN;
 import frc.robot.subsystems.Subsystem_Tower_Lift;
 import frc.robot.subsystems.Subsystem_Tower_Rotation;
 import frc.robot.subsystems.Subsystem_Winch;
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
   public static Subsystem_Intake intake = new Subsystem_Intake();
   public static Subsystem_Winch winch = new Subsystem_Winch();
   public static Subsystem_Tower_Lift towerLift = new Subsystem_Tower_Lift();
+  public static Subsystem_RGBLED_CAN rgbLedController = new Subsystem_RGBLED_CAN();
   public static OI oi;
 
   Command m_autonomousCommand;
@@ -53,6 +55,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    Robot.rgbLedController.RGBledCAN();
   }
 
   /**

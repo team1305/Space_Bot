@@ -22,6 +22,10 @@ public class Subsystem_Intake extends Subsystem {
   private boolean bWristIsUp = true;
   private boolean bHatchGrabbed = false;
 
+  //creates variables to determine if the intake is running, only use for now is for LEDs
+  public boolean bIntakeOn = false;
+  public boolean bOuttakeOn = false;
+
   //grabs device IDs from robotmap
   private final CANSparkMax mtIntake = RobotMap.mtIntake;
   private final Solenoid slndWrist = RobotMap.slndIntakeMove;
@@ -37,16 +41,22 @@ public class Subsystem_Intake extends Subsystem {
   //negative because they mounted it backwards
   public void Intake() {
     mtIntake.set(-0.5);
+    bIntakeOn = true;
+    bOuttakeOn = false;
   }
 
   //sets intake to half power for intaking
   public void Outtake() {
     mtIntake.set(0.5);
+    bIntakeOn = false;
+    bOuttakeOn = true;
   }
 
   //stops intake movement
   public void IntakeStop() {
     mtIntake.set(0.0);
+    bIntakeOn = false;
+    bOuttakeOn = false;
   }
 
   //rotates wrist up
