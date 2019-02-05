@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.Command_Tower_Lift;
 
 /**
  * Add your docs here.
@@ -26,8 +27,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new Command_Tower_Lift());
   }
 
   //Changes tower lower level to true and extends the pnuematic
