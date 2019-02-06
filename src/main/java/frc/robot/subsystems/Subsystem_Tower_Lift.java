@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.Command_Tower_Lift;
 
 /**
  * Add your docs here.
@@ -18,8 +17,8 @@ import frc.robot.commands.Command_Tower_Lift;
 public class Subsystem_Tower_Lift extends Subsystem {
 
   //creates boolean variables to determine tower state
-  private boolean bTowerLowerIsUp = false;
-  private boolean bTowerUpperIsUp = false;
+  public boolean bTowerLowerIsUp = false;
+  public boolean bTowerUpperIsUp = false;
   
   //grabs device ID from robotmap
   public final Solenoid slndTower1 = RobotMap.slndTowerStage1;
@@ -27,7 +26,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new Command_Tower_Lift());
+    //setDefaultCommand(new Command_Tower_Lift());
   }
 
   //Changes tower lower level to true and extends the pnuematic
@@ -54,23 +53,19 @@ public class Subsystem_Tower_Lift extends Subsystem {
     bTowerUpperIsUp = false;
   }
 
-  //checks to see if the first level is extended and if not extends it
-  //if already extended extends second level
-  public void TowerUp() {
-    if (bTowerLowerIsUp == false) {
+  public void ToggleLevel1() {
+    if (!bTowerLowerIsUp) {
       Level1Up();
-    } else if (bTowerUpperIsUp == false) {
-      Level2Up();
+    } else {
+      Level1Down();
     }
   }
 
-  //checks to see if the first level is extended and if so retracts it
-  //if already retracted retracts second level
-  public void TowerDown() {
-    if (bTowerUpperIsUp == true) {
+  public void ToggleLevel2() {
+    if (!bTowerUpperIsUp) {
+      Level2Up();
+    } else {
       Level2Down();
-    } else if (bTowerLowerIsUp == true) {
-      Level1Down();
     }
   }
 }
