@@ -47,7 +47,7 @@ public class Subsystem_Intake extends Subsystem {
 
   //sets intake to half power for intaking
   public void Outtake() {
-    mtIntake.set(0.5);
+    mtIntake.set(0.8);
     bIntakeOn = false;
     bOuttakeOn = true;
   }

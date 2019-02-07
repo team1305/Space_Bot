@@ -10,11 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Command_Tower_Level1 extends Command {
-
-  private boolean bIsFinished = false;
-
-  public Command_Tower_Level1() {
+public class Command_Tower_Drop extends Command {
+  public Command_Tower_Drop() {
     requires(Robot.towerLift);
   }
 
@@ -26,15 +23,13 @@ public class Command_Tower_Level1 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    bIsFinished = false;
-    Robot.towerLift.ToggleLevel1();
-    bIsFinished = true;
+    Robot.towerLift.Drop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return bIsFinished;
+    return false;
   }
 
   // Called once after isFinished returns true
@@ -46,6 +41,7 @@ public class Command_Tower_Level1 extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.towerLift.Level2Down();
     Robot.towerLift.Level1Down();
   }
 }

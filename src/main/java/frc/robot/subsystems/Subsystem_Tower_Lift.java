@@ -53,19 +53,21 @@ public class Subsystem_Tower_Lift extends Subsystem {
     bTowerUpperIsUp = false;
   }
 
-  public void ToggleLevel1() {
-    if (!bTowerLowerIsUp) {
+  public void Lift() {
+    if (!bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level1Up();
-    } else {
-      Level1Down();
+    } else if (bTowerLowerIsUp && !bTowerUpperIsUp) {
+      Level2Up();
     }
+
   }
 
-  public void ToggleLevel2() {
-    if (!bTowerUpperIsUp) {
-      Level2Up();
-    } else {
+  public void Drop() {
+    if (bTowerLowerIsUp && bTowerUpperIsUp) {
       Level2Down();
+    } else if (bTowerLowerIsUp && !bTowerUpperIsUp) {
+      Level1Down();
     }
+
   }
 }
