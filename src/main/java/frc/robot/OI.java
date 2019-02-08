@@ -30,6 +30,7 @@ public class OI {
 
   //declares joystick on port 0
   public Joystick joyxbox1 = new Joystick(0);  // Primary Driver Stick
+  public Joystick joyxbox2 = new Joystick(1);
   
   //declares button mapping of the joyxbox1 controller
 	Button btn1_A = new JoystickButton(joyxbox1, 1);  //xbox "A" Button 1
@@ -42,6 +43,18 @@ public class OI {
 	Button btn1_Start = new JoystickButton(joyxbox1, 8);  //xbox "Start" Button 8
 	Button btn1_LS = new JoystickButton(joyxbox1, 9);  //xbox "Left Stick Click" Button 9
   Button btn1_RS = new JoystickButton(joyxbox1, 10);  //xbox "Right Stick Click" Button 10
+
+    //declares button mapping of the joyxbox1 controller
+	Button btn2_A = new JoystickButton(joyxbox2, 1);  //xbox "A" Button 1
+	Button btn2_B = new JoystickButton(joyxbox2, 2); //xbox "B" Button 2
+	Button btn2_X = new JoystickButton(joyxbox2, 3); //xbox "X" Button 3
+	Button btn2_Y = new JoystickButton(joyxbox2, 4); //xbox "Y" Button 4
+	Button btn2_LB = new JoystickButton(joyxbox2, 5); //xbox "LB" Button 5
+	Button btn2_RB = new JoystickButton(joyxbox2, 6);  //xbox "RB" Button 6
+	Button btn2_Back = new JoystickButton(joyxbox2, 7);  //xbox "Back" Button 7
+	Button btn2_Start = new JoystickButton(joyxbox2, 8);  //xbox "Start" Button 8
+	Button btn2_LS = new JoystickButton(joyxbox2, 9);  //xbox "Left Stick Click" Button 9
+  Button btn2_RS = new JoystickButton(joyxbox2, 10);  //xbox "Right Stick Click" Button 10
 
   public OI() {
  
@@ -56,7 +69,7 @@ public class OI {
     btn1_Start.whenPressed(new Command_Compressor_ON());//xbox "Start" Button 8
     btn1_LS.whenPressed(new Command_Shift_Gear());//xbox "Left Stick Click" Button 9
     //btn1_RS.whileHeld(new Cmd_LED_Blink());//xbox "Right Stick Click" Button 10
-    ////xbox "X Axis" Left Stick - 
+    //xbox "X Axis" Left Stick - 
     ////xbox "Y Axis" Left Stick - Drive Forward and Reverse
     ////xbox "X Axis 5" Right Stick - 
     ////xbox "Y Axis 4" Right Stick - Drive Left and Right
@@ -66,6 +79,9 @@ public class OI {
     ////xbox "Down" Direction Pad - Tower down
     ////xbox "Left" Direction Pad - Tower Left
     ////xbox "Right" Direction Pad - Tower Right
+
+    btn2_A.whileHeld(new Command_Winch());//xbox "A" Button 1
+    btn2_B.whileHeld(new Command_Unwinch());//xbox "B" Button 2
   }
   
   //returns joyxbox1 whenever getJoystickDriver is called
