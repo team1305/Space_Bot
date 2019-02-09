@@ -26,16 +26,7 @@ public class Command_Tower_Loop extends Command {
   @Override
   protected void execute() {
     SmartDashboard.putNumber("POV", Robot.oi.getJoystickDriver().getPOV());
-    if (Robot.oi.getJoystickDriver().getPOV() == 270) {
-
-      Robot.tower.TowerLeft();
-    } else if (Robot.oi.getJoystickDriver().getPOV() == 90) {
-
-      Robot.tower.TowerRight();
-    } else {
-
-      Robot.tower.TowerStop();
-    }
+    Robot.tower.TowerAI();
   }
 
   // Make this return true when this Command no longer needs to run execute()

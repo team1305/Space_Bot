@@ -51,6 +51,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    Robot.tower.resetEncoder();
     oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
