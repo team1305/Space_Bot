@@ -21,6 +21,7 @@ public class Subsystem_Intake extends Subsystem {
   //creates variables to determine if hatch is grabbed and state of intake wrist
   public boolean bWristIsUp;
   public boolean bHatchGrabbed = false;
+  public boolean bHatchKicked;
 
   //creates variables to determine if the intake is running, only use for now is for LEDs
   public boolean bIntakeOn = false;
@@ -30,9 +31,11 @@ public class Subsystem_Intake extends Subsystem {
   private final CANSparkMax mtIntake = RobotMap.mtIntake;
   private final Solenoid slndWrist = RobotMap.slndIntakeMove;
   private final Solenoid slndHatch = RobotMap.slndHatchIntake;
+  private final Solenoid slndKick = RobotMap.slndHatchKickers;
 
   public Subsystem_Intake() {
     bWristIsUp = true;
+    bHatchKicked = false;
   }
 
   @Override
@@ -102,6 +105,24 @@ public class Subsystem_Intake extends Subsystem {
       DropHatch();
     } else {
       GrabHatch();
+    }
+  }
+
+  public void KickHatch() {
+    this.slndKick.set(true);
+    bHatchKicked = true;
+  }
+
+  public void DontKickHatch() {
+    this.slndKick.set(false);
+    bHatchKicked = false;
+  }
+
+  public void ToggleKick() {
+    if (bHatchKicked) {
+      KickHatch();
+    } else {
+      DontKickHatch();
     }
   }
 }
