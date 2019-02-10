@@ -13,6 +13,7 @@ import frc.robot.Robot;
 public class Command_Toggle_Kicker extends Command {
 
   private boolean bIsFinished = false;
+
   public Command_Toggle_Kicker() {
     requires(Robot.intake);
   }
@@ -25,26 +26,27 @@ public class Command_Toggle_Kicker extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    bIsFinished = false;
-    Robot.intake.ToggleKick();
-    bIsFinished = true;
+    //bIsFinished = false;
+    Robot.intake.KickHatch();
+    //bIsFinished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return bIsFinished;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.intake.DontKickHatch();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.intake.DontKickHatch();
+    end();
   }
 }

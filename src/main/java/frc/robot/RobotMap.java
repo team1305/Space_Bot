@@ -55,7 +55,7 @@ public class RobotMap {
   public static Solenoid slndTowerStage2 = new Solenoid(6);
   public static Solenoid slndIntakeMove = new Solenoid(2);
   public static Solenoid slndHatchIntake = new Solenoid(4);
-  public static Solenoid slndHatchKickers = new Solenoid(1);
+  public static Solenoid slndHatchKickers = new Solenoid(7);
 
   public static void init() {    
 

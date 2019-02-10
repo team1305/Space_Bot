@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -21,7 +22,7 @@ public class Subsystem_Intake extends Subsystem {
   //creates variables to determine if hatch is grabbed and state of intake wrist
   public boolean bWristIsUp;
   public boolean bHatchGrabbed = false;
-  public boolean bHatchKicked;
+  public boolean bHatchKicked = false;
 
   //creates variables to determine if the intake is running, only use for now is for LEDs
   public boolean bIntakeOn = false;
@@ -35,7 +36,6 @@ public class Subsystem_Intake extends Subsystem {
 
   public Subsystem_Intake() {
     bWristIsUp = true;
-    bHatchKicked = false;
   }
 
   @Override
@@ -111,11 +111,13 @@ public class Subsystem_Intake extends Subsystem {
   public void KickHatch() {
     this.slndKick.set(true);
     bHatchKicked = true;
+    SmartDashboard.putBoolean("kicker", bHatchKicked);
   }
 
   public void DontKickHatch() {
     this.slndKick.set(false);
     bHatchKicked = false;
+    SmartDashboard.putBoolean("kicker", bHatchKicked);
   }
 
   public void ToggleKick() {
