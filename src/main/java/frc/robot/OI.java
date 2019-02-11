@@ -60,16 +60,16 @@ public class OI {
   public OI() {
  
     // Primary Driver Stick
-    btn1_A.whenPressed(new Command_Tower_Drop());//xbox "A" Button 1
-    btn1_B.whenPressed(new Command_Toggle_Hatch());//xbox "B" Button 2
-    btn1_X.whenPressed(new Command_Toggle_Wrist());//xbox "X" Button 3
-    btn1_Y.whenPressed(new Command_Tower_Lift());//xbox "Y" Button 4
-    btn1_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
-    btn1_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
+    //btn1_A.whenPressed(new Command_Tower_Drop());//xbox "A" Button 1
+    //btn1_B.whenPressed(new Command_Toggle_Hatch());//xbox "B" Button 2
+    //btn1_X.whenPressed(new Command_Toggle_Wrist());//xbox "X" Button 3
+    //btn1_Y.whenPressed(new Command_Tower_Lift());//xbox "Y" Button 4
+    //btn1_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
+    //btn1_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7
     btn1_Start.whenPressed(new Command_Compressor_ON());//xbox "Start" Button 8
     btn1_LS.whenPressed(new Command_Shift_Gear());//xbox "Left Stick Click" Button 9
-    btn1_RS.whileHeld(new Command_Toggle_Kicker());//xbox "Right Stick Click" Button 10
+    //btn1_RS.whileHeld(new Command_Toggle_Kicker());//xbox "Right Stick Click" Button 10
     //btn1_RS.whileHeld(new Cmd_LED_Blink());//xbox "Right Stick Click" Button 10
     //xbox "X Axis" Left Stick - 
     ////xbox "Y Axis" Left Stick - Drive Forward and Reverse
@@ -77,17 +77,41 @@ public class OI {
     ////xbox "Y Axis 4" Right Stick - Drive Left and Right
     ////xbox "Axis 3" Left Trigger - 
     ////xbox "Axis 3" Right Trigger - 
-    ////xbox "Up" Direction Pad - Tower up
-    ////xbox "Down" Direction Pad - Tower down
-    ////xbox "Left" Direction Pad - Tower Left
-    ////xbox "Right" Direction Pad - Tower Right
+    ////xbox "Up" Direction Pad -
+    ////xbox "Down" Direction Pad -
+    ////xbox "Left" Direction Pad -
+    ////xbox "Right" Direction Pad -
 
-    btn2_A.whileHeld(new Command_Winch());//xbox "A" Button 1
-    btn2_B.whileHeld(new Command_Unwinch());//xbox "B" Button 2
+    // Secondary Driver Stick
+    btn2_A.whenPressed(new Command_Tower_Drop());//xbox "A" Button 1
+    btn2_B.whenPressed(new Command_Toggle_Hatch());//xbox "B" Button 2
+    btn2_X.whenPressed(new Command_Toggle_Wrist());//xbox "X" Button 3
+    btn2_Y.whenPressed(new Command_Tower_Lift());//xbox "Y" Button 4
+    btn2_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
+    btn2_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
+    btn2_Back.whileHeld(new Command_Unwinch());//xbox "Back" Button 7
+    btn2_Start.whileHeld(new Command_Winch());//xbox "Start" Button 8
+    btn2_LS.whenPressed(new Command_Toggle_Kicker());//xbox "Left Stick Click" Button 9
+    //btn2_RS.whileHeld(new Command_Toggle_Kicker());//xbox "Right Stick Click" Button 10
+    ////xbox "X Axis" Left Stick - 
+    ////xbox "Y Axis" Left Stick -
+    ////xbox "X Axis 5" Right Stick - 
+    ////xbox "Y Axis 4" Right Stick -
+    ////xbox "Axis 3" Left Trigger - 
+    ////xbox "Axis 3" Right Trigger - 
+    ////xbox "Up" Direction Pad - Tower Forward
+    ////xbox "Down" Direction Pad - Tower Backward
+    ////xbox "Left" Direction Pad - Tower Leftside
+    ////xbox "Right" Direction Pad - Tower Rightside
   }
   
   //returns joyxbox1 whenever getJoystickDriver is called
   public Joystick getJoystickDriver() {
     return joyxbox1;
+  }
+
+  //returns joyxbox2 whenever getJoystickOperator is called
+  public Joystick getJoystickOperator() {
+    return joyxbox2;
   }
 }

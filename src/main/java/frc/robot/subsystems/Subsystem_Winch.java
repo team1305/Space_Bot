@@ -29,14 +29,14 @@ public class Subsystem_Winch extends Subsystem {
 
   //Turns motors to winch climb up
   public void Winch() {
-    mtWinch1.set(0.5);
-    mtWinch2.set(0.5);
+    mtWinch1.set(0.3);
+    mtWinch2.set(0.3);
   }
 
   //Turns motors to unwinch climb for testing
   public void unWinch() {
-    mtWinch1.set(-0.5);
-    mtWinch2.set(-0.5);
+    mtWinch1.set(-0.3);
+    mtWinch2.set(-0.3);
   }
 
   //stops motors, stopping climbing

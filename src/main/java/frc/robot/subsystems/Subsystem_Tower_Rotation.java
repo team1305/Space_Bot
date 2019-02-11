@@ -115,11 +115,11 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
     SmartDashboard.putNumber("Encoder Value", getPosition());
 
-    if (GetPOV(Robot.oi.getJoystickDriver().getPOV()) != -1) {
+    if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {
 
       //Robot.intake.WristUp();
 
-      intPOV = GetPOV(Robot.oi.getJoystickDriver().getPOV());
+      intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
 
       if (intPOV == 0) {
         SetPosition(0);
