@@ -10,11 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Command_Toggle_Kicker extends Command {
-
-  private boolean bIsFinished = false;
-
-  public Command_Toggle_Kicker() {
+public class Command_Kick_Hatch extends Command {
+  public Command_Kick_Hatch() {
     requires(Robot.intake);
   }
 
@@ -26,9 +23,7 @@ public class Command_Toggle_Kicker extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //bIsFinished = false;
-    Robot.intake.KickHatch();
-    //bIsFinished = true;
+    Robot.intake.LaunchHatch();
   }
 
   // Make this return true when this Command no longer needs to run execute()

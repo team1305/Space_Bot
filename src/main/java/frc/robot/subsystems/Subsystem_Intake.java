@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
@@ -120,11 +121,22 @@ public class Subsystem_Intake extends Subsystem {
     SmartDashboard.putBoolean("kicker", bHatchKicked);
   }
 
-  public void ToggleKick() {
-    if (bHatchKicked) {
-      KickHatch();
+  public int GetTrigger(double axis) {
+    if (axis == 0) {
+      return 0;
     } else {
-      DontKickHatch();
+      return 1;
+    }
+  }
+  public void LaunchHatch() {
+    switch (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3))) {
+      case 0:
+        DontKickHatch();
+      break;
+      case 1:
+        DropHatch();
+        KickHatch();
+      break;
     }
   }
 }

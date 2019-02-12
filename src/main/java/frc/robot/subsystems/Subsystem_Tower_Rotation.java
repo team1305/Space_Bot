@@ -110,50 +110,48 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
     intIntakePosition = Robot.intake.bWristIsUp ? 1 : 0;
     intHatchpPosition = Robot.intake.bHatchGrabbed ? 1 : 0;
-    intTower1Up = Robot.towerLift.bTowerLowerIsUp ? 1 : 0;
-    intTower2Up = Robot.towerLift.bTowerUpperIsUp ? 1 : 0;
 
     SmartDashboard.putNumber("Encoder Value", getPosition());
 
     if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {
 
-      //Robot.intake.WristUp();
-
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
 
-      if (intPOV == 0) {
-        SetPosition(0);
-      } else if (intPOV == 90) {
-        SetPosition(59363);
-      } else if (intPOV == 180) {
-        SetPosition(-118726);
-      } else if (intPOV == 270) {
-        SetPosition(-59363);
-      } else {
-
+      switch (intIntakePosition) {
+        case 1:
+          Robot.intake.WristUp();
+        break;
+        case 0:
+          switch (intHatchpPosition) {
+            case 1:
+              Robot.towerLift.Level1Up();
+              if (intPOV == 0) {
+                SetPosition(0);
+              } else if (intPOV == 90) {
+                SetPosition(59363);
+              } else if (intPOV == 180) {
+                SetPosition(-118726);
+              } else if (intPOV == 270) {
+                SetPosition(-59363);
+              } else { }
+            break;
+            case 0:
+              if (intPOV == 0) {
+                SetPosition(0);
+              } else if (intPOV == 90) {
+                SetPosition(59363);
+              } else if (intPOV == 180) {
+                SetPosition(-118726);
+              } else if (intPOV == 270) {
+                SetPosition(-59363);
+              } else { }
+              break;
+          }
+        break;
       }
 
-
-     /* switch (GetPOV(Robot.oi.getJoystickDriver().getPOV())) {
-        case 0:
-          SetPosition(0);
-        break;
-
-        case 90:
-          SetPosition(59363);
-        break;
-
-        case 180:
-          //SetPosition(-118726);
-        break;
-
-        case 270:
-          SetPosition(-59363);
-        break;
-      } */
-
     } else {
-      //Robot.tower.holdPosition(Robot.tower.getPosition()); 
+
     }
   }
 }
