@@ -110,31 +110,32 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
     intIntakePosition = Robot.intake.bWristIsUp ? 1 : 0;
     intHatchpPosition = Robot.intake.bHatchGrabbed ? 1 : 0;
+    intTower1Up = Robot.towerLift.bTowerLowerIsUp ? 1 : 0;
 
     SmartDashboard.putNumber("Encoder Value", getPosition());
+
 
     if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {
 
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
-
+      
       switch (intIntakePosition) {
         case 1:
-          Robot.intake.WristUp();
-        break;
-        case 0:
           switch (intHatchpPosition) {
             case 1:
-              Robot.towerLift.Level1Up();
-              if (intPOV == 0) {
-                SetPosition(0);
-              } else if (intPOV == 90) {
-                SetPosition(59363);
-              } else if (intPOV == 180) {
-                SetPosition(-118726);
-              } else if (intPOV == 270) {
-                SetPosition(-59363);
-              } else { }
+              if (intTower1Up == 0) {
+                if (intPOV == 0) {
+                  SetPosition(0);
+                } else if (intPOV == 90) {
+                  SetPosition(59363);
+                } else if (intPOV == 180) {
+                  SetPosition(-118726);
+                } else if (intPOV == 270) {
+                  SetPosition(-59363);
+                }
+              }
             break;
+
             case 0:
               if (intPOV == 0) {
                 SetPosition(0);
@@ -144,13 +145,11 @@ public class Subsystem_Tower_Rotation extends Subsystem {
                 SetPosition(-118726);
               } else if (intPOV == 270) {
                 SetPosition(-59363);
-              } else { }
-              break;
+              }
+            break;
           }
         break;
       }
-
-    } else {
 
     }
   }
