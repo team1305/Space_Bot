@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -16,10 +17,15 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Subsystem_Winch extends Subsystem {
+
+  private boolean bIsReleased = false;
   
   //grabs device ID from robotmap
   private final CANSparkMax mtWinch1 = RobotMap.mtWinch1;
   private final CANSparkMax mtWinch2 = RobotMap.mtWinch2;
+
+  //grabs port ID of the solenoid
+  private final Solenoid slndRelease = RobotMap.slndClimbRelease;
 
   @Override
   public void initDefaultCommand() {
@@ -29,8 +35,8 @@ public class Subsystem_Winch extends Subsystem {
 
   //Turns motors to winch climb up
   public void Winch() {
-    mtWinch1.set(0.3);
-    mtWinch2.set(0.3);
+    mtWinch1.set(0.55);
+    mtWinch2.set(0.55);
   }
 
   //Turns motors to unwinch climb for testing
@@ -43,5 +49,26 @@ public class Subsystem_Winch extends Subsystem {
   public void Stop() {
     mtWinch1.set(0.0);
     mtWinch2.set(0.0);
+  }
+
+  //rotates lock up
+  public void Release() {
+    this.slndRelease.set(true);
+    bIsReleased = true;
+  }
+  
+  //rotates lock down
+  public void Lock() {
+    this.slndRelease.set(false);
+    bIsReleased = false;
+  }
+  
+  //toggles lock movement
+  public void ToggleLock() {
+    if (bIsReleased) {
+      Release();
+    } else {
+      Lock();
+    }
   }
 }

@@ -16,6 +16,7 @@ import frc.robot.commands.Command_Intake;
 import frc.robot.commands.Command_Outtake;
 import frc.robot.commands.Command_Shift_Gear;
 import frc.robot.commands.Command_Toggle_Hatch;
+import frc.robot.commands.Command_Toggle_Lock;
 import frc.robot.commands.Command_Toggle_Wrist;
 import frc.robot.commands.Command_Tower_Drop;
 import frc.robot.commands.Command_Tower_Lift;
@@ -62,7 +63,7 @@ public class OI {
     //btn1_A.whenPressed(new Command_Tower_Drop());//xbox "A" Button 1
     //btn1_B.whenPressed(new Command_Toggle_Hatch());//xbox "B" Button 2
     //btn1_X.whenPressed(new Command_Toggle_Wrist());//xbox "X" Button 3
-    //btn1_Y.whenPressed(new Command_Tower_Lift());//xbox "Y" Button 4
+    btn1_Y.whenPressed(new Command_Toggle_Lock());//xbox "Y" Button 4
     //btn1_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
     //btn1_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7

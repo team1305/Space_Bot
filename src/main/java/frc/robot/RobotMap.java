@@ -56,10 +56,11 @@ public class RobotMap {
   public static Solenoid slndIntakeMove = new Solenoid(2);
   public static Solenoid slndHatchIntake = new Solenoid(4);
   public static Solenoid slndHatchKickers = new Solenoid(7);
+  public static Solenoid slndClimbRelease = new Solenoid(1);
 
   public static void init() {    
 
-    //because the tower likes to spin
+    //because the tower likes to spin -- this doesn't actually work
     mtTowerRotate.setNeutralMode(NeutralMode.Brake);
   }
 

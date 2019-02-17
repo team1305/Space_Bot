@@ -26,10 +26,10 @@ import frc.robot.commands.Command_Tower_Loop;
  */
 public class Subsystem_Tower_Rotation extends Subsystem {
 
+  //creates int for position of different tower systems
   private int intIntakePosition;
   private int intHatchpPosition;
   private int intTower1Up;
-  private int intTower2Up;
   private int intPOV;
 
   
@@ -41,14 +41,18 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   public Subsystem_Tower_Rotation() {
 
+    //limits tower motor max speed
     mtRotate.configPeakOutputForward(0.4);
     mtRotate.configPeakOutputReverse(-0.4);
 
+    //creates the encoder for the tower
     mtRotate.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
+    //creates forward limit switch and sets it to normally closed
     mtRotate.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
      LimitSwitchNormal.NormallyClosed, 0); // enable limit switch
 
+     //creates reverse limit switch and sets it to normally closed
     mtRotate.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
      LimitSwitchNormal.NormallyClosed, 0); // enable limit switch
   }
@@ -73,10 +77,12 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     mtRotate.set(-TOWERPOWERCONSTANT);
   }
 
+  //gets the POV value of a Joystick passed through this function
   public int GetPOV(int intPOVValue) {
     return intPOVValue;
   }
 
+  //gets the position
   public double getPosition() {
     return mtRotate.getSelectedSensorPosition(0);  
   }
