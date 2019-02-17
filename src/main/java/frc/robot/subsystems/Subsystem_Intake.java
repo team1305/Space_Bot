@@ -22,7 +22,7 @@ import frc.robot.commands.Command_Kick_Hatch;
 public class Subsystem_Intake extends Subsystem {
 
   //creates variables to determine if hatch is grabbed and state of intake wrist
-  public boolean bWristIsUp;
+  public boolean bWristIsDown;
   public boolean bHatchGrabbed = false;
   public boolean bHatchKicked = false;
 
@@ -37,7 +37,7 @@ public class Subsystem_Intake extends Subsystem {
   private final Solenoid slndKick = RobotMap.slndHatchKickers;
 
   public Subsystem_Intake() {
-    bWristIsUp = true;
+    bWristIsDown = true;
   }
 
   @Override
@@ -70,18 +70,18 @@ public class Subsystem_Intake extends Subsystem {
   //rotates wrist up
   public void WristUp() {
     this.slndWrist.set(true);
-    bWristIsUp = true;
+    bWristIsDown = true;
   }
 
   //rotates wrist down
   public void WristDown() {
     this.slndWrist.set(false);
-    bWristIsUp = false;
+    bWristIsDown = false;
   }
 
   //toggles wrist movement
   public void ToggleWrist() {
-    if (bWristIsUp) {
+    if (bWristIsDown) {
       WristDown();
     } else {
       WristUp();

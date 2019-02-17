@@ -27,9 +27,6 @@ import frc.robot.commands.Command_Tower_Loop;
 public class Subsystem_Tower_Rotation extends Subsystem {
 
   //creates int for position of different tower systems
-  private int intIntakePosition;
-  private int intHatchpPosition;
-  private int intTower1Up;
   private int intPOV;
 
   
@@ -114,10 +111,6 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   public void TowerAI() {
 
-    intIntakePosition = Robot.intake.bWristIsUp ? 1 : 0;
-    intHatchpPosition = Robot.intake.bHatchGrabbed ? 1 : 0;
-    intTower1Up = Robot.towerLift.bTowerLowerIsUp ? 1 : 0;
-
     SmartDashboard.putNumber("Encoder Value", getPosition());
 
 
@@ -125,36 +118,16 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
       
-      switch (intIntakePosition) {
-        case 1:
-          switch (intHatchpPosition) {
-            case 1:
-              if (intTower1Up == 0) {
-                if (intPOV == 0) {
-                  SetPosition(0);
-                } else if (intPOV == 90) {
-                  SetPosition(59363);
-                } else if (intPOV == 180) {
-                  SetPosition(-118726);
-                } else if (intPOV == 270) {
-                  SetPosition(-59363);
-                }
-              }
-            break;
-
-            case 0:
-              if (intPOV == 0) {
-                SetPosition(0);
-              } else if (intPOV == 90) {
-                SetPosition(59363);
-              } else if (intPOV == 180) {
-                SetPosition(-118726);
-              } else if (intPOV == 270) {
-                SetPosition(-59363);
-              }
-            break;
-          }
-        break;
+      if (!Robot.intake.bWristIsDown) {
+        if (intPOV == 0) {
+          SetPosition(0);
+        } else if (intPOV == 90) {
+          SetPosition(59363);
+        } else if (intPOV == 180) {
+          SetPosition(-118726);
+        } else if (intPOV == 270) {
+          SetPosition(-59363);
+        }
       }
 
     }

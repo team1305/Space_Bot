@@ -23,6 +23,9 @@ import frc.robot.commands.Command_Drive_With_Joystick;
  */
 public class Subsystem_Drive extends Subsystem {
 
+  //variable for deadband
+  public double dDeadband = 0.2;
+
   //boolean for checking gear shift state
   public boolean bIsHigh = false;
 
@@ -69,8 +72,10 @@ public class Subsystem_Drive extends Subsystem {
   //creates a deadband for the joystick so that the robot does not spin
   // when nobody is touching the controls
   private double JoystickDeadBand(double input) {
-    if(Math.abs(input) < 0.2) return 0;
-    else return input;
+    if(Math.abs(input) < dDeadband) return 0;
+    else if(input > 0) return ((input - dDeadband) * (1/(1-dDeadband)));
+    else if(input < 0) return ((input + dDeadband) * (1/(1-dDeadband)));
+    else return 0;
   }
 
   //creates a driving function using specified joystick
