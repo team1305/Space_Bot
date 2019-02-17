@@ -15,6 +15,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 
 /**
@@ -40,6 +41,11 @@ public class RobotMap {
   public static CANEncoder enDriveRight1 = new CANEncoder(mtDriveRight1);
   public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
 
+  //declares Digital input devices which in this case are line sensors
+  public static DigitalInput snsrLineSensorL = new DigitalInput(2);
+  public static DigitalInput snsrLineSensorR = new DigitalInput(1);
+  public static DigitalInput snsrLineSensorF = new DigitalInput(0);
+
   //declares CANifier for LED control
   public static CANifier RGBLEDController = new CANifier(20);
 
@@ -57,6 +63,7 @@ public class RobotMap {
   public static Solenoid slndHatchIntake = new Solenoid(4);
   public static Solenoid slndHatchKickers = new Solenoid(7);
   public static Solenoid slndClimbRelease = new Solenoid(1);
+  public static Solenoid slndTowerLEDs = new Solenoid(0);
 
   public static void init() {    
 
