@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 
   //declares subsystem variables so commands can access subsystems
   public static ExampleSubsystem subsystem = new ExampleSubsystem();
+  
   public static Subsystem_Drive drive = new Subsystem_Drive();
   public static Subsystem_Compressor_Power compressor = new Subsystem_Compressor_Power();
   public static Subsystem_Tower_Rotation tower = new Subsystem_Tower_Rotation();

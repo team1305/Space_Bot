@@ -21,10 +21,13 @@ import frc.robot.commands.Command_Drive_With_Joystick;
 /**
  * Add your docs here.
  */
-public class Subsystem_Drive extends Subsystem {
+public class Subsystem_Drive extends Subsystem implements Runnable {
 
   //boolean for checking gear shift state
   public boolean bIsHigh = false;
+
+  //boolean for checking if thread has started
+  private boolean bisRunning = false;
 
   //grabs drive motor information from RobotMap
   private final CANSparkMax mtLeft1 = RobotMap.mtDriveLeft1;
@@ -141,5 +144,13 @@ public class Subsystem_Drive extends Subsystem {
     enLeftStart = getleftEncederValue();
     enRightStart = getRightEncederValue();
     return true;
+  }
+
+  public void run(Joystick joy){
+    bisRunning = true;
+    driveWithJoystick(joy);
+  }
+  public boolean isRunning(){
+    return bisRunning;
   }
 }
