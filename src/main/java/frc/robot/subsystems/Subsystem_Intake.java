@@ -23,8 +23,8 @@ public class Subsystem_Intake extends Subsystem {
 
   //creates variables to determine if hatch is grabbed and state of intake wrist
   public boolean bWristIsDown;
-  public boolean bHatchGrabbed = false;
-  public boolean bHatchKicked = false;
+  public boolean bHatchGrabbed;
+  public boolean bHatchKicked;
 
   //creates variables to determine if the intake is running, only use for now is for LEDs
   public boolean bIntakeOn = false;
@@ -39,6 +39,8 @@ public class Subsystem_Intake extends Subsystem {
   //when the subsystem is initialized sets the default position of the intake
   public Subsystem_Intake() {
     bWristIsDown = false;
+    bHatchGrabbed = false;
+    bHatchKicked = false;
   }
 
   @Override
