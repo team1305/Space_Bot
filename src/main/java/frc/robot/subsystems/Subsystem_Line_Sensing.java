@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import java.io.Console;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -68,6 +67,7 @@ public class Subsystem_Line_Sensing extends Subsystem {
       switch(intSensorValues) {
         case 101:
           this.slndTowerLights.set(true);
+          Robot.drive.driveStop();
         break;
         case 10:
           this.slndTowerLights.set(true);
