@@ -53,6 +53,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
     bTowerUpperIsUp = false;
   }
 
+  //lifts tower in increments
   public void Lift() {
     if (!bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level1Up();
@@ -62,6 +63,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
 
   }
 
+  //drops tower in increments
   public void Drop() {
     if (bTowerLowerIsUp && bTowerUpperIsUp) {
       Level2Down();

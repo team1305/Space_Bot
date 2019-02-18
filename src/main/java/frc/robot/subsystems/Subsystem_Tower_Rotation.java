@@ -84,48 +84,49 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     return mtRotate.getSelectedSensorPosition(0);  
   }
 
+  //sets the PID loop for the tower
   public void setPID () {
     mtRotate.config_kP(0, 0.05, 0);  //0.05
     mtRotate.config_kI(0, 0.0, 0);  //0.01
     mtRotate.config_kD(0, 2, 0); //1
-    }
+  }
 
+  //uses PID loop to hold tower in requested position
   public void holdPosition(double requestedPosition) {
     mtRotate.set(ControlMode.Position, requestedPosition );
-    //stage1L.set(ControlMode.Position, requestedPosition / (Math.PI * 0.5) * 4096);
   }
 
+  //rotates tower to specified position and uses PID to hold it
   public void SetPosition(double towerRotation) {
-    //if (towerRotation < 59370) {
       Robot.tower.setPID();
       mtRotate.set(ControlMode.Position, towerRotation );
-        
       //Robot.tower.holdPosition(Robot.tower.getPosition()); 
-      //stage1L.set(ControlMode.Position, requestedPosition / (Math.PI * 0.5) * 4096);
-    //}
   }
 
+  //resets the tower encoder - unused currently, need to find defaulte position of limts
   public void resetEncoder() {
      	mtRotate.setSelectedSensorPosition(0, 0, 10);
   }  
 
+  //this is the "AI" for the tower rotation
   public void TowerAI() {
-
+    //puts the encoder value on the dashboard
     SmartDashboard.putNumber("Encoder Value", getPosition());
 
-
+    //first determines if the POV is untouched
     if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {
-
+      //puts data to the intPOV variable to make code shorter
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
       
+      //checks to see if the wrist is down and if it is does not run
       if (!Robot.intake.bWristIsDown) {
-        if (intPOV == 0) {
+        if (intPOV == 0) { //forward
           SetPosition(0);
-        } else if (intPOV == 90) {
+        } else if (intPOV == 90) { //right
           SetPosition(59363);
-        } else if (intPOV == 180) {
+        } else if (intPOV == 180) { //backward
           SetPosition(-118726);
-        } else if (intPOV == 270) {
+        } else if (intPOV == 270) { //left
           SetPosition(-59363);
         }
       }

@@ -36,8 +36,9 @@ public class Subsystem_Intake extends Subsystem {
   private final Solenoid slndHatch = RobotMap.slndHatchIntake;
   private final Solenoid slndKick = RobotMap.slndHatchKickers;
 
+  //when the subsystem is initialized sets the default position of the intake
   public Subsystem_Intake() {
-    bWristIsDown = true;
+    bWristIsDown = false;
   }
 
   @Override
@@ -53,7 +54,7 @@ public class Subsystem_Intake extends Subsystem {
     bOuttakeOn = false;
   }
 
-  //sets intake to half power for intaking
+  //sets intake to half power for outtaking
   public void Outtake() {
     mtIntake.set(0.8);
     bIntakeOn = false;
@@ -109,18 +110,21 @@ public class Subsystem_Intake extends Subsystem {
     }
   }
 
+  //extends hatch kicking solenoids
   public void KickHatch() {
     this.slndKick.set(true);
     bHatchKicked = true;
     SmartDashboard.putBoolean("kicker", bHatchKicked);
   }
 
+  //asks the solenoids to nicely retract
   public void DontKickHatch() {
     this.slndKick.set(false);
     bHatchKicked = false;
     SmartDashboard.putBoolean("kicker", bHatchKicked);
   }
 
+  //changes axis input into 0 or 1 only creating a button
   public int GetTrigger(double axis) {
     if (axis == 0) {
       return 0;
@@ -128,7 +132,10 @@ public class Subsystem_Intake extends Subsystem {
       return 1;
     }
   }
+
+  //main command for launching the hatch
   public void LaunchHatch() {
+    //creats a switch based on the value of the right trigger
     switch (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3))) {
       case 0:
         DontKickHatch();
