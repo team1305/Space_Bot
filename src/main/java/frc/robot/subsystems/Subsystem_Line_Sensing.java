@@ -67,7 +67,7 @@ public class Subsystem_Line_Sensing extends Subsystem {
       switch(intSensorValues) {
         case 101:
           this.slndTowerLights.set(true);
-          Robot.drive.driveStop();
+          Robot.drive.DriveStop();
         break;
         case 10:
           this.slndTowerLights.set(true);

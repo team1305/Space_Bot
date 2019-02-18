@@ -90,7 +90,7 @@ public class Subsystem_Drive extends Subsystem {
   }
 
   //stops the drive train
-  public void driveStop() {
+  public void DriveStop() {
 
     drRobotDrive.arcadeDrive(0, 0);
   }
