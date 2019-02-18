@@ -54,6 +54,7 @@ public class Subsystem_Intake extends Subsystem {
     mtIntake.set(-0.5);
     bIntakeOn = true;
     bOuttakeOn = false;
+    DropHatch();
   }
 
   //sets intake to half power for outtaking
@@ -86,8 +87,10 @@ public class Subsystem_Intake extends Subsystem {
   public void ToggleWrist() {
     if (bWristIsDown) {
       WristDown();
+      DropHatch();
     } else {
       WristUp();
+      GrabHatch();
     }
   }
 
@@ -147,5 +150,8 @@ public class Subsystem_Intake extends Subsystem {
         KickHatch();
       break;
     }
+    if (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(2)) == 1) {
+      mtIntake.set(0.2);
+    } else {mtIntake.set(0.0);}
   }
 }

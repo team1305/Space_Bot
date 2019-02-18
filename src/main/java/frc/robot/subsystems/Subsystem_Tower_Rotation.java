@@ -37,8 +37,8 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   public Subsystem_Tower_Rotation() {
 
     //limits tower motor max speed
-    mtRotate.configPeakOutputForward(1);
-    mtRotate.configPeakOutputReverse(-1);
+    mtRotate.configPeakOutputForward(0.8);
+    mtRotate.configPeakOutputReverse(-0.8);
 
     //creates the encoder for the tower
     mtRotate.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -86,7 +86,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   public void setPID () {
     mtRotate.config_kP(0, 0.05, 0);  //0.05
     mtRotate.config_kI(0, 0.0, 0);  //0.01
-    mtRotate.config_kD(0, 2, 0); //1
+    mtRotate.config_kD(0, 1.6, 0); //1
   }
 
   //uses PID loop to hold tower in requested position

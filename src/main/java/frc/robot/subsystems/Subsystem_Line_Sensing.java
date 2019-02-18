@@ -53,9 +53,9 @@ public class Subsystem_Line_Sensing extends Subsystem {
       bSensorF = snsrForward.get();
   
       //converts the line sensors from boolean to integers
-      intSensorL = bSensorL ? 1:0;
-      intSensorR = bSensorR ? 1:0;
-      intSensorF = bSensorF ? 1:0;
+      intSensorL = bSensorL ? 0:1;
+      intSensorR = bSensorR ? 0:1;
+      intSensorF = bSensorF ? 0:1;
   
       //creates essentially a binary string of numbers
       intSensorValues = (intSensorL * 100) + (intSensorF * 10) + intSensorR;

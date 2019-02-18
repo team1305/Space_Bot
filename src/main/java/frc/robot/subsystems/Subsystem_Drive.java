@@ -24,7 +24,7 @@ import frc.robot.commands.Command_Drive_With_Joystick;
 public class Subsystem_Drive extends Subsystem {
 
   //variable for deadband
-  public double dDeadband = 0.2;
+  public double dDeadband = 0.1;
 
   //boolean for checking gear shift state
   public boolean bIsHigh = false;

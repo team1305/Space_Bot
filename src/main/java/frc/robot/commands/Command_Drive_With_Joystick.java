@@ -23,7 +23,7 @@ public class Command_Drive_With_Joystick extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() { 
     Robot.drive.driveWithJoystick(Robot.oi.getJoystickDriver());
   }
 
@@ -42,5 +42,6 @@ public class Command_Drive_With_Joystick extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
