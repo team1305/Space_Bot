@@ -40,6 +40,7 @@ public class RobotMap {
   public static CANEncoder enDriveLeft2 = new CANEncoder(mtDriveLeft2);
   public static CANEncoder enDriveRight1 = new CANEncoder(mtDriveRight1);
   public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
+  public static CANEncoder enWinch1 = new CANEncoder(mtWinch1);
 
   //declares Digital input devices which in this case are line sensors
   public static DigitalInput snsrLineSensorL = new DigitalInput(2);
