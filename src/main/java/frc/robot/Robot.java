@@ -59,6 +59,11 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putBoolean("Tower Level 1", towerLift.bTowerLowerIsUp);
+    SmartDashboard.putBoolean("Tower Level 2", towerLift.bTowerUpperIsUp);
+    SmartDashboard.putBoolean("Intake", intake.bWristIsDown);
+    SmartDashboard.putBoolean("J Hook", intake.bHatchGrabbed);
+    SmartDashboard.putBoolean("Gear", drive.bIsHigh);
     Robot.rgbLedController.RGBledCAN();
     CameraServer.getInstance().startAutomaticCapture();
   }

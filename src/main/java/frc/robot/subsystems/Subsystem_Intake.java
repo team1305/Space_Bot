@@ -39,7 +39,7 @@ public class Subsystem_Intake extends Subsystem {
   //when the subsystem is initialized sets the default position of the intake
   public Subsystem_Intake() {
     bWristIsDown = false;
-    bHatchGrabbed = false;
+    bHatchGrabbed = true;
     bHatchKicked = false;
   }
 
@@ -96,22 +96,22 @@ public class Subsystem_Intake extends Subsystem {
 
   //extends pnuematic to grab hatch
   public void GrabHatch() {
-    this.slndHatch.set(true);
-    bHatchGrabbed = true;
+    this.slndHatch.set(false);
+    bHatchGrabbed = false;
   }
 
   //retracts pnuematic to lower hatch
   public void DropHatch() {
-    this.slndHatch.set(false);
-    bHatchGrabbed = false;
+    this.slndHatch.set(true);
+    bHatchGrabbed = true;
   }
 
   //toggles hatch grabber
   public void ToggleHatchGrabber() {
     if (bHatchGrabbed) {
-      DropHatch();
-    } else {
       GrabHatch();
+    } else {
+      DropHatch();
     }
   }
 
