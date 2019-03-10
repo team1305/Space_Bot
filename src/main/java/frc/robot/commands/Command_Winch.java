@@ -11,7 +11,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Command_Winch extends Command {
+
+  private boolean bReleased;
+
   public Command_Winch() {
+
+    bReleased = false;
+
+    requires(Robot.drive);
     requires(Robot.winch);
   }
 
@@ -23,7 +30,15 @@ public class Command_Winch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.winch.Winch();
+    if (Robot.oi.joyxbox1.getRawButton(4)) {
+      if(!bReleased) {
+        Robot.winch.Release();
+        bReleased = true;
+      }
+      Robot.winch.Winch();
+      Robot.drive.ClimbSpeed();
+      Robot.winch.LEDsOn();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,8 +50,9 @@ public class Command_Winch extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.winch.resetcount();
+    //Robot.winch.resetcount();
     Robot.winch.Stop();
+    Robot.winch.LEDsOFF();
   }
 
   // Called when another command which requires one or more of the same

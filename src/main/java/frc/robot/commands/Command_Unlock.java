@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Command_PID_Winch extends Command {
-  public Command_PID_Winch() {
+public class Command_Unlock extends Command {
+  public Command_Unlock() {
     requires(Robot.winch);
   }
 
@@ -23,7 +23,9 @@ public class Command_PID_Winch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.winch.PIDLoop();
+    if (Robot.oi.joyxbox1.getRawButton(3)) {
+      Robot.winch.Release();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +43,5 @@ public class Command_PID_Winch extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.winch.Stop();
   }
 }

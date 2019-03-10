@@ -41,6 +41,9 @@ public class Subsystem_Intake extends Subsystem {
     bWristIsDown = false;
     bHatchGrabbed = true;
     bHatchKicked = false;
+
+    mtIntake.setOpenLoopRampRate(0.2);
+    //jaredRocks(true);
   }
 
   @Override

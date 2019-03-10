@@ -59,7 +59,10 @@ public class Subsystem_Drive extends Subsystem {
   
   //does absolutely nothing... as of now
   public Subsystem_Drive() {
-
+    mtLeft1.setOpenLoopRampRate(0.1);
+    mtLeft2.setOpenLoopRampRate(0.1);
+    mtRight1.setOpenLoopRampRate(0.1);
+    mtRight2.setOpenLoopRampRate(0.1);
   }
 
   @Override
@@ -91,8 +94,11 @@ public class Subsystem_Drive extends Subsystem {
 
   //stops the drive train
   public void DriveStop() {
-
     drRobotDrive.arcadeDrive(0, 0);
+  }
+
+  public void ClimbSpeed() {
+    drRobotDrive.arcadeDrive(0.5, 0);
   }
 
   //shifts drive train to low gear

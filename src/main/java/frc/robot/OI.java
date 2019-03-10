@@ -13,13 +13,14 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Command_Compressor_OFF;
 import frc.robot.commands.Command_Compressor_ON;
 import frc.robot.commands.Command_Intake;
+import frc.robot.commands.Command_Lock;
 import frc.robot.commands.Command_Outtake;
 import frc.robot.commands.Command_Shift_Gear;
 import frc.robot.commands.Command_Toggle_Hatch;
-import frc.robot.commands.Command_Toggle_Lock;
 import frc.robot.commands.Command_Toggle_Wrist;
 import frc.robot.commands.Command_Tower_Drop;
 import frc.robot.commands.Command_Tower_Lift;
+import frc.robot.commands.Command_Unlock;
 import frc.robot.commands.Command_Unwinch;
 import frc.robot.commands.Command_Winch;
 
@@ -60,17 +61,17 @@ public class OI {
   public OI() {
  
     // Primary Driver Stick
-    //btn1_A.whenPressed(new Command_Tower_Drop());//xbox "A" Button 1
-    //btn1_B.whenPressed(new Command_Toggle_Hatch());//xbox "B" Button 2
-    //btn1_X.whenPressed(new Command_Toggle_Wrist());//xbox "X" Button 3
-    btn1_Y.whenPressed(new Command_Toggle_Lock());//xbox "Y" Button 4
-    //btn1_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
-    //btn1_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
+    btn1_A.whenPressed(new Command_Unlock());//xbox "A" Button 1
+    btn1_B.whileHeld(new Command_Winch());//xbox "B" Button 2
+    //btn1_X.whenPressed();//xbox "X" Button 3
+    //btn1_Y.whenPressed();//xbox "Y" Button 4
+    //btn1_LB.whileHeld();//xbox "LB" Button 5
+    btn1_RB.whenPressed(new Command_Lock());//xbox "RB" Button 6
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7
     btn1_Start.whenPressed(new Command_Compressor_ON());//xbox "Start" Button 8
     btn1_LS.whenPressed(new Command_Shift_Gear());//xbox "Left Stick Click" Button 9
-    //btn1_RS.whileHeld(new Command_Toggle_Kicker());//xbox "Right Stick Click" Button 10
-    //btn1_RS.whileHeld(new Cmd_LED_Blink());//xbox "Right Stick Click" Button 10
+    //btn1_RS.whileHeld();//xbox "Right Stick Click" Button 10
+    //btn1_RS.whileHeld();//xbox "Right Stick Click" Button 10
     //xbox "X Axis" Left Stick - 
     ////xbox "Y Axis" Left Stick - Drive Forward and Reverse
     ////xbox "X Axis 5" Right Stick - 
@@ -90,7 +91,7 @@ public class OI {
     btn2_LB.whileHeld(new Command_Intake());//xbox "LB" Button 5
     btn2_RB.whileHeld(new Command_Outtake());//xbox "RB" Button 6
     btn2_Back.whileHeld(new Command_Unwinch());//xbox "Back" Button 7
-    btn2_Start.whileHeld(new Command_Winch());//xbox "Start" Button 8
+    //btn2_Start.whileHeld(new Command_Winch());//xbox "Start" Button 8
     //btn2_LS.whenPressed(new Command_Toggle_Kicker());//xbox "Left Stick Click" Button 9
     //btn2_RS.whileHeld(new Command_Toggle_Kicker());//xbox "Right Stick Click" Button 10
     ////xbox "X Axis" Left Stick - 
