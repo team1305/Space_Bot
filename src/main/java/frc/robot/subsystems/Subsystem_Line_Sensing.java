@@ -45,8 +45,11 @@ public class Subsystem_Line_Sensing extends Subsystem {
 
   //main line sensing loop
   public void LineSensing() {
+
+    this.slndTowerLights.set(Robot.compressor.isenabled());
+
     //loop only runs if RB is pressed on driver joystick
-    if(Robot.oi.getJoystickDriver().getRawButton(6)) {
+    if(Robot.oi.getJoystickDriver().getRawButton(5)) { //LB
       //gets the boolean data of the line sensors
       bSensorL = snsrLeft.get();
       bSensorR = snsrRight.get();
@@ -67,33 +70,41 @@ public class Subsystem_Line_Sensing extends Subsystem {
       switch(intSensorValues) {
         case 101:
           this.slndTowerLights.set(true);
-          Robot.drive.DriveStop();
+          Robot.intake.OuttakeSpeed(0.8);
         break;
         case 10:
           this.slndTowerLights.set(true);
+          Robot.intake.OuttakeSpeed(0);
         break;
         case 100:
           this.slndTowerLights.set(false);
+          Robot.intake.OuttakeSpeed(0);
         break;
         case 1:
           this.slndTowerLights.set(false);
+          Robot.intake.OuttakeSpeed(0);
         break;
         case 110:
           this.slndTowerLights.set(false);
+          Robot.intake.OuttakeSpeed(0);
         break;
         case 11:
           this.slndTowerLights.set(false);
+          Robot.intake.OuttakeSpeed(0);
         break;
         case 0:
           this.slndTowerLights.set(false);
+          Robot.intake.OuttakeSpeed(0);
         break;
         case 111:
           this.slndTowerLights.set(false);
+          Robot.intake.OuttakeSpeed(0);
         break;
         default: //should not run but if it does outputs an error message
           System.out.println("Sensor Error " + intSensorValues); 
       }
-    } else {this.slndTowerLights.set(false);}
+    } else {//this.slndTowerLights.set(false);
+    }
 
   }
 }

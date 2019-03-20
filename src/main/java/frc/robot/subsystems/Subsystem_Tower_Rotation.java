@@ -27,6 +27,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   //creates int for position of different tower systems
   private int intPOV;
 
+  public boolean bcompressorON = false;
   
   //grabs device ID from robotmap
   private final WPI_TalonSRX mtRotate = RobotMap.mtTowerRotate;
@@ -47,7 +48,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     mtRotate.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
      LimitSwitchNormal.NormallyClosed, 0); // enable limit switch
 
-     //creates reverse limit switch and sets it to normally closed
+    //creates reverse limit switch and sets it to normally closed
     mtRotate.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
      LimitSwitchNormal.NormallyClosed, 0); // enable limit switch
   }
@@ -89,6 +90,12 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     mtRotate.config_kD(0, 1.6, 0); //1
   }
 
+  public void setPID2 () {
+    mtRotate.config_kP(0, 0.05, 0);  //0.05
+    mtRotate.config_kI(0, 0.0, 0);  //0.01
+    mtRotate.config_kD(0, 1.6, 0); //1
+  }
+
   //uses PID loop to hold tower in requested position
   public void holdPosition(double requestedPosition) {
     mtRotate.set(ControlMode.Position, requestedPosition );
@@ -96,14 +103,24 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   //rotates tower to specified position and uses PID to hold it
   public void SetPosition(double towerRotation) {
+    if (towerRotation <= 60000 && towerRotation >= -119000) {
       Robot.tower.setPID();
       mtRotate.set(ControlMode.Position, towerRotation );
-      //Robot.tower.holdPosition(Robot.tower.getPosition()); 
+      //Robot.tower.holdPosition(Robot.tower.getPosition());
+    } 
+  }
+
+  public void SetPosition2(double towerRotation) {
+    if (towerRotation <= 60000 && towerRotation >= -119000) {
+      Robot.tower.setPID2();
+      mtRotate.set(ControlMode.Position, towerRotation );
+      //Robot.tower.holdPosition(Robot.tower.getPosition());
+    } 
   }
 
   //resets the tower encoder - unused currently, need to find defaulte position of limts
   public void resetEncoder() {
-     	mtRotate.setSelectedSensorPosition(0, 0, 10);
+       mtRotate.setSelectedSensorPosition(0, 0, 10); // sensorPos, PIDIdx, timeoutMD
   }  
 
   //this is the "AI" for the tower rotation
@@ -111,21 +128,33 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     //puts the encoder value on the dashboard
     SmartDashboard.putNumber("Encoder Value", getPosition());
 
+    // bcompressorON = Robot.compressor.isenabled();
+    // SmartDashboard.putBoolean("CompressorON", bcompressorON);
+    
     //first determines if the POV is untouched
     if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {
       //puts data to the intPOV variable to make code shorter
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
       
+
       //checks to see if the wrist is down and if it is does not run
       if (!Robot.intake.bWristIsDown) {
-        if (intPOV == 0) { //forward
-          SetPosition(0);
-        } else if (intPOV == 90) { //right
-          SetPosition(59363);
-        } else if (intPOV == 180) { //backward
-          SetPosition(-118726);
-        } else if (intPOV == 270) { //left
-          SetPosition(-59363);
+        if (Robot.oi.getJoystickOperator().getRawButton(8)) { //Start button
+          if (intPOV == 90) {
+            SetPosition2(getPosition() + 3330); //approx 5 deg (approx 666 per deg)
+          } else if (intPOV == 270) {
+            SetPosition2(getPosition() - 3330);
+          }
+        } else {
+          if (intPOV == 0) { //forward
+            SetPosition(0);
+          } else if (intPOV == 90) { //right
+            SetPosition(59363);
+          } else if (intPOV == 180) { //backward
+           SetPosition(-118726);
+          } else if (intPOV == 270) { //left
+            SetPosition(-59363);
+          }
         }
       }
 

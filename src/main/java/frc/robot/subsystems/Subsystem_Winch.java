@@ -46,7 +46,7 @@ public class Subsystem_Winch extends Subsystem {
   //Turns motors to winch climb up
   public void Winch() {
     //if (loopcounter<25){
-      mtWinch1.set(-0.75);
+      mtWinch1.set(-0.9); //0.85 // 0.8 // .75
     //}
     //else{
       //mtWinch1.set(0.5);

@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.Command_Drive_With_Joystick;
 
@@ -98,19 +99,21 @@ public class Subsystem_Drive extends Subsystem {
   }
 
   public void ClimbSpeed() {
-    drRobotDrive.arcadeDrive(0.5, 0);
+    drRobotDrive.arcadeDrive(-0.7, 0);
   }
 
   //shifts drive train to low gear
   public void LowGear() {
     this.slndShift.set(false);
     bIsHigh = false;
+    SmartDashboard.putBoolean("Gear", bIsHigh);
   }
 
   //shifts drive train to high gear
   public void HighGear() {
     this.slndShift.set(true);
     bIsHigh = true;
+    SmartDashboard.putBoolean("Gear", bIsHigh);
   }
 
   //toggles gear state
@@ -120,6 +123,7 @@ public class Subsystem_Drive extends Subsystem {
     } else {
       HighGear();
     }
+    SmartDashboard.putBoolean("Gear", bIsHigh);
   }
 
   //gets encoder position for the left side

@@ -62,9 +62,21 @@ public class Subsystem_Intake extends Subsystem {
 
   //sets intake to half power for outtaking
   public void Outtake() {
-    mtIntake.set(0.8);
+    mtIntake.set(1);
     bIntakeOn = false;
     bOuttakeOn = true;
+  }
+
+  public void OuttakeSpeed(double nspeed) {
+    mtIntake.set(nspeed);
+    if (nspeed == 0) {
+      bIntakeOn = false;
+      bOuttakeOn = false;
+    } else {
+      bIntakeOn = false;
+      bOuttakeOn = true;
+    }
+    
   }
 
   //stops intake movement
@@ -78,12 +90,16 @@ public class Subsystem_Intake extends Subsystem {
   public void WristUp() {
     this.slndWrist.set(true);
     bWristIsDown = true;
+    SmartDashboard.putBoolean("Intake", bWristIsDown);
+
   }
 
   //rotates wrist down
   public void WristDown() {
     this.slndWrist.set(false);
     bWristIsDown = false;
+    SmartDashboard.putBoolean("Intake", bWristIsDown);
+
   }
 
   //toggles wrist movement
@@ -95,18 +111,22 @@ public class Subsystem_Intake extends Subsystem {
       WristUp();
       GrabHatch();
     }
+    SmartDashboard.putBoolean("Intake", bWristIsDown);
+    SmartDashboard.putBoolean("J Hook", bHatchGrabbed);
   }
 
   //extends pnuematic to grab hatch
   public void GrabHatch() {
     this.slndHatch.set(false);
     bHatchGrabbed = false;
+    SmartDashboard.putBoolean("J Hook", bHatchGrabbed);
   }
 
   //retracts pnuematic to lower hatch
   public void DropHatch() {
     this.slndHatch.set(true);
     bHatchGrabbed = true;
+    SmartDashboard.putBoolean("J Hook", bHatchGrabbed);
   }
 
   //toggles hatch grabber
@@ -116,6 +136,7 @@ public class Subsystem_Intake extends Subsystem {
     } else {
       DropHatch();
     }
+    SmartDashboard.putBoolean("J Hook", bHatchGrabbed);
   }
 
   //extends hatch kicking solenoids

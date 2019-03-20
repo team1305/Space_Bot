@@ -19,15 +19,20 @@ public class Subsystem_Compressor_Power extends Subsystem {
   //grabs device ID from robotmap
   private final Compressor compressor = RobotMap.cmpRobotCompressor;
 
+  
   @Override
   public void initDefaultCommand() {
-
+       
   }
 
   //turns the compressor on
   public void CompressorON() {
 
     compressor.start();
+  }
+
+  public boolean isenabled() {
+    return compressor.enabled();
   }
 
   //turns the compressor off

@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Subsystem_Compressor_Power;
 import frc.robot.subsystems.Subsystem_Drive;
 import frc.robot.subsystems.Subsystem_Intake;
@@ -34,7 +32,6 @@ import frc.robot.subsystems.Subsystem_Winch;
 public class Robot extends TimedRobot {
 
   //declares subsystem variables so commands can access subsystems
-  public static ExampleSubsystem subsystem = new ExampleSubsystem();
   public static Subsystem_Drive drive = new Subsystem_Drive();
   public static Subsystem_Compressor_Power compressor = new Subsystem_Compressor_Power();
   public static Subsystem_Tower_Rotation tower = new Subsystem_Tower_Rotation();
@@ -56,9 +53,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     Robot.tower.resetEncoder();
     oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    // SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putBoolean("Tower Level 1", towerLift.bTowerLowerIsUp);
     SmartDashboard.putBoolean("Tower Level 2", towerLift.bTowerUpperIsUp);
     SmartDashboard.putBoolean("Intake", intake.bWristIsDown);
@@ -107,7 +104,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    Robot.drive.HighGear();
+    // m_autonomousCommand = m_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -117,9 +115,9 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.start();
+    // }
   }
 
   /**
@@ -127,7 +125,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
+    // Scheduler.getInstance().run();
+    teleopPeriodic();
   }
 
   @Override

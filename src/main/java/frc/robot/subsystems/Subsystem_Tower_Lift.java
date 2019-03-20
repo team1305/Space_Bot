@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
@@ -56,20 +57,23 @@ public class Subsystem_Tower_Lift extends Subsystem {
   //lifts tower in increments
   public void Lift() {
     if (!bTowerLowerIsUp && !bTowerUpperIsUp) {
-      Level1Up();
-    } else if (bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level2Up();
+    } else if (!bTowerLowerIsUp && bTowerUpperIsUp) {
+      Level1Up();
     }
-
+    SmartDashboard.putBoolean("Tower Level 1", bTowerLowerIsUp);
+    SmartDashboard.putBoolean("Tower Level 2", bTowerUpperIsUp);
   }
 
   //drops tower in increments
   public void Drop() {
     if (bTowerLowerIsUp && bTowerUpperIsUp) {
-      Level2Down();
-    } else if (bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level1Down();
+    } else if (!bTowerLowerIsUp && bTowerUpperIsUp) {
+      Level2Down();
     }
-
+    SmartDashboard.putBoolean("Tower Level 1", bTowerLowerIsUp);
+    SmartDashboard.putBoolean("Tower Level 2", bTowerUpperIsUp);
+ 
   }
 }

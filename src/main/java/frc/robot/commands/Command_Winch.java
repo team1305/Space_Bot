@@ -25,6 +25,7 @@ public class Command_Winch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    bReleased = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -32,6 +33,7 @@ public class Command_Winch extends Command {
   protected void execute() {
     if (Robot.oi.joyxbox1.getRawButton(4)) {
       if(!bReleased) {
+        Robot.drive.HighGear();
         Robot.winch.Release();
         bReleased = true;
       }
