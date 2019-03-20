@@ -60,10 +60,10 @@ public class Subsystem_Drive extends Subsystem {
   
   //sets ramprate of drive motors -- now does things!
   public Subsystem_Drive() {
-    mtLeft1.setOpenLoopRampRate(0.1);
-    mtLeft2.setOpenLoopRampRate(0.1);
-    mtRight1.setOpenLoopRampRate(0.1);
-    mtRight2.setOpenLoopRampRate(0.1);
+    mtLeft1.setOpenLoopRampRate(0.4);
+    mtLeft2.setOpenLoopRampRate(0.4);
+    mtRight1.setOpenLoopRampRate(0.4);
+    mtRight2.setOpenLoopRampRate(0.4);
   }
 
   @Override
