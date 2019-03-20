@@ -30,9 +30,9 @@ import frc.robot.commands.Command_Winch;
  */
 public class OI {
 
-  //declares joystick on port 0
+  //declares joysticks
   public Joystick joyxbox1 = new Joystick(0);  // Primary Driver Stick
-  public Joystick joyxbox2 = new Joystick(1);
+  public Joystick joyxbox2 = new Joystick(1);  // Operator Control Stick
   
   //declares button mapping of the joyxbox1 controller
 	Button btn1_A = new JoystickButton(joyxbox1, 1);  //xbox "A" Button 1
@@ -98,8 +98,8 @@ public class OI {
     ////xbox "Y Axis" Left Stick -
     ////xbox "X Axis 5" Right Stick - 
     ////xbox "Y Axis 4" Right Stick -
-    ////xbox "Axis 3" Left Trigger - 
-    ////xbox "Axis 3" Right Trigger - 
+    ////xbox "Axis 3" Left Trigger - Kick Hatch
+    ////xbox "Axis 3" Right Trigger - Slow spit
     ////xbox "Up" Direction Pad - Tower Forward
     ////xbox "Down" Direction Pad - Tower Backward
     ////xbox "Left" Direction Pad - Tower Leftside

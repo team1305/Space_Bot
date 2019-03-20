@@ -42,6 +42,7 @@ public class Robot extends TimedRobot {
   public static Subsystem_Line_Sensing lineSensing = new Subsystem_Line_Sensing();
   public static OI oi;
 
+  //creates a sendable chooser -- isnt used at all
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -51,6 +52,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    //resets the encoder on initialize
     Robot.tower.resetEncoder();
     oi = new OI();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
@@ -60,8 +63,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Tower Level 2", towerLift.bTowerUpperIsUp);
     SmartDashboard.putBoolean("Intake", intake.bWristIsDown);
     SmartDashboard.putBoolean("J Hook", intake.bHatchGrabbed);
-    SmartDashboard.putBoolean("Gear", drive.bIsHigh);
+    SmartDashboard.putBoolean("Gear", drive.bIsLow);
     Robot.rgbLedController.RGBledCAN();
+
+    //starts camera stream
     CameraServer.getInstance().startAutomaticCapture();
   }
 
@@ -104,7 +109,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    Robot.drive.HighGear();
+    //puts robot into low gear once auto/sandstorm starts
+    Robot.drive.LowGear();
     // m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -126,6 +132,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     // Scheduler.getInstance().run();
+
+    //in auto/sandstorm calls teleop
     teleopPeriodic();
   }
 

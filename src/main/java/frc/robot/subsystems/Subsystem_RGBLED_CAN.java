@@ -21,7 +21,7 @@ import frc.robot.commands.Command_CAN_Lights;
 public class Subsystem_RGBLED_CAN extends Subsystem {
 
 	//creates variables to control the power and brightness
-	// of the LEDS
+	//of the LEDS
 	double dPower;
 	double dBrightness;
 
@@ -49,9 +49,9 @@ public class Subsystem_RGBLED_CAN extends Subsystem {
 				LEDGreen();
 			} else if (Robot.intake.bOuttakeOn) {
 				LEDRed();
-			} else if (Robot.drive.bIsHigh) {
+			} else if (Robot.drive.bIsLow) {
 				LEDBlue();
-			} else if (!Robot.drive.bIsHigh) {
+			} else if (!Robot.drive.bIsLow) {
 				LEDCyan();
 			} else {
 				Show1305();

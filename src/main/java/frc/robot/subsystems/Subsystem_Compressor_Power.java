@@ -31,6 +31,7 @@ public class Subsystem_Compressor_Power extends Subsystem {
     compressor.start();
   }
 
+  //checks to see if the compressor is enabled
   public boolean isenabled() {
     return compressor.enabled();
   }

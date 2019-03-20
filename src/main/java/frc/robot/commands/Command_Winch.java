@@ -33,7 +33,7 @@ public class Command_Winch extends Command {
   protected void execute() {
     if (Robot.oi.joyxbox1.getRawButton(4)) {
       if(!bReleased) {
-        Robot.drive.HighGear();
+        Robot.drive.LowGear();
         Robot.winch.Release();
         bReleased = true;
       }

@@ -28,7 +28,7 @@ public class Subsystem_Drive extends Subsystem {
   public double dDeadband = 0.1;
 
   //boolean for checking gear shift state
-  public boolean bIsHigh = false;
+  public boolean bIsLow = false;
 
   //grabs drive motor information from RobotMap
   private final CANSparkMax mtLeft1 = RobotMap.mtDriveLeft1;
@@ -58,7 +58,7 @@ public class Subsystem_Drive extends Subsystem {
   private Double enLeftCurrent;
   private Double enRightCurrent;
   
-  //does absolutely nothing... as of now
+  //sets ramprate of drive motors -- now does things!
   public Subsystem_Drive() {
     mtLeft1.setOpenLoopRampRate(0.1);
     mtLeft2.setOpenLoopRampRate(0.1);
@@ -68,7 +68,6 @@ public class Subsystem_Drive extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
     //unless interupted the default command will allow driver to drive with joystick
     setDefaultCommand(new Command_Drive_With_Joystick());
   }
@@ -103,27 +102,27 @@ public class Subsystem_Drive extends Subsystem {
   }
 
   //shifts drive train to low gear
-  public void LowGear() {
+  public void HighGear() {
     this.slndShift.set(false);
-    bIsHigh = false;
-    SmartDashboard.putBoolean("Gear", bIsHigh);
+    bIsLow = false;
+    SmartDashboard.putBoolean("Gear", bIsLow);
   }
 
   //shifts drive train to high gear
-  public void HighGear() {
+  public void LowGear() {
     this.slndShift.set(true);
-    bIsHigh = true;
-    SmartDashboard.putBoolean("Gear", bIsHigh);
+    bIsLow = true;
+    SmartDashboard.putBoolean("Gear", bIsLow);
   }
 
   //toggles gear state
   public void toggleGear() {
-    if (bIsHigh) {
-      LowGear();
-    } else {
+    if (bIsLow) {
       HighGear();
+    } else {
+      LowGear();
     }
-    SmartDashboard.putBoolean("Gear", bIsHigh);
+    SmartDashboard.putBoolean("Gear", bIsLow);
   }
 
   //gets encoder position for the left side

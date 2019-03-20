@@ -24,10 +24,8 @@ import frc.robot.commands.Command_Tower_Loop;
  */
 public class Subsystem_Tower_Rotation extends Subsystem {
 
-  //creates int for position of different tower systems
+  //creates int for controller positioning
   private int intPOV;
-
-  public boolean bcompressorON = false;
   
   //grabs device ID from robotmap
   private final WPI_TalonSRX mtRotate = RobotMap.mtTowerRotate;
@@ -90,6 +88,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     mtRotate.config_kD(0, 1.6, 0); //1
   }
 
+  //not sure why there is a second function
   public void setPID2 () {
     mtRotate.config_kP(0, 0.05, 0);  //0.05
     mtRotate.config_kI(0, 0.0, 0);  //0.01
@@ -110,6 +109,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     } 
   }
 
+  //again, not sure why there is a second function of this
   public void SetPosition2(double towerRotation) {
     if (towerRotation <= 60000 && towerRotation >= -119000) {
       Robot.tower.setPID2();
@@ -118,7 +118,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     } 
   }
 
-  //resets the tower encoder - unused currently, need to find defaulte position of limts
+  //resets the tower encoder -- unused currently, need to find defaulte position of limts
   public void resetEncoder() {
        mtRotate.setSelectedSensorPosition(0, 0, 10); // sensorPos, PIDIdx, timeoutMD
   }  
@@ -127,9 +127,6 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   public void TowerAI() {
     //puts the encoder value on the dashboard
     SmartDashboard.putNumber("Encoder Value", getPosition());
-
-    // bcompressorON = Robot.compressor.isenabled();
-    // SmartDashboard.putBoolean("CompressorON", bcompressorON);
     
     //first determines if the POV is untouched
     if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {

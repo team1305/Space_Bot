@@ -20,6 +20,7 @@ import frc.robot.commands.Command_Winch;
  */
 public class Subsystem_Winch extends Subsystem {
 
+  //creates a loop counter to slow the climb -- currently unused
   private int loopcounter;
   
   //grabs device ID from robotmap
@@ -30,8 +31,7 @@ public class Subsystem_Winch extends Subsystem {
   private final Solenoid slndRelease = RobotMap.slndClimbRelease;
   private final Solenoid slndlights = RobotMap.slndTowerLEDs;
 
-
-
+  //on initialization of the subsystem sets motor settings
   public Subsystem_Winch() {
     mtWinch1.setOpenLoopRampRate(0.4);
     mtWinch2.setOpenLoopRampRate(0.4);
@@ -59,10 +59,10 @@ public class Subsystem_Winch extends Subsystem {
     mtWinch1.set(0.2);
   }
 
-    //stops motors, stopping climbing
-    public void resetcount() {
-      loopcounter =0;
-    }
+  //resets loop counter
+  public void resetcount() {
+    loopcounter =0;
+  }
 
   //stops motors, stopping climbing
   public void Stop() {

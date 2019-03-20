@@ -60,13 +60,14 @@ public class Subsystem_Intake extends Subsystem {
     DropHatch();
   }
 
-  //sets intake to half power for outtaking
+  //sets intake to half power for outtaking -- pew pew
   public void Outtake() {
     mtIntake.set(1);
     bIntakeOn = false;
     bOuttakeOn = true;
   }
 
+  //sets the outtake speed when line is sensed -- unused
   public void OuttakeSpeed(double nspeed) {
     mtIntake.set(nspeed);
     if (nspeed == 0) {

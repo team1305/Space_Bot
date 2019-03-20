@@ -46,6 +46,6 @@ public class Command_Shift_Gear extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.drive.LowGear();
+    Robot.drive.HighGear();
   }
 }
