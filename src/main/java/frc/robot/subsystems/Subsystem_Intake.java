@@ -175,8 +175,5 @@ public class Subsystem_Intake extends Subsystem {
         KickHatch();
       break;
     }
-    if (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(2)) == 1) {
-      mtIntake.set(0.2);
-    } else {mtIntake.set(0.0);}
   }
 }

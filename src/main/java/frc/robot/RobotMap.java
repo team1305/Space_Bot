@@ -34,6 +34,7 @@ public class RobotMap {
   public static CANSparkMax mtWinch1 = new CANSparkMax(5, MotorType.kBrushless);
   public static CANSparkMax mtWinch2 = new CANSparkMax(6, MotorType.kBrushless);
   public static CANSparkMax mtIntake = new CANSparkMax(7, MotorType.kBrushless);
+  public static CANSparkMax mtTowerLift = new CANSparkMax(8, MotorType.kBrushless);
 
   //declares encoders for motor controllers and motors connected to encoder
   public static CANEncoder enDriveLeft1 = new CANEncoder(mtDriveLeft1);
@@ -41,6 +42,7 @@ public class RobotMap {
   public static CANEncoder enDriveRight1 = new CANEncoder(mtDriveRight1);
   public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
   public static CANEncoder enWinch1 = new CANEncoder(mtWinch1);
+  public static CANEncoder enTowerLift = new CANEncoder(mtTowerLift);
 
   //declares Digital input devices which in this case are line sensors
   public static DigitalInput snsrLineSensorL = new DigitalInput(2);
@@ -58,7 +60,6 @@ public class RobotMap {
 
   //declares port number of solenoid
   public static Solenoid slndGearShifter = new Solenoid(3);
-  public static Solenoid slndTowerStage1 = new Solenoid(5);
   public static Solenoid slndTowerStage2 = new Solenoid(6);
   public static Solenoid slndIntakeMove = new Solenoid(2);
   public static Solenoid slndHatchIntake = new Solenoid(4);

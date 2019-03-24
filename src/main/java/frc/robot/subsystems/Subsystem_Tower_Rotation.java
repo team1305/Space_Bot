@@ -83,8 +83,8 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   //sets the PID loop for the tower
   public void setPID () {
-    mtRotate.config_kP(0, 0.05, 0);  //0.05
-    mtRotate.config_kI(0, 0.0, 0);  //0.01
+    mtRotate.config_kP(0, 0.07, 0);  //0.05
+    mtRotate.config_kI(0, 0.0, 0);  //0.0
     mtRotate.config_kD(0, 1.6, 0); //1
   }
 
