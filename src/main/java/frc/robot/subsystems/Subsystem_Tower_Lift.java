@@ -38,13 +38,16 @@ public class Subsystem_Tower_Lift extends Subsystem {
   //creates a PID controller for the tower control
   private final CANPIDController pidTower1 = mtTower1.getPIDController();
 
-  //on initialize sets the PID values
+  //on initialize sets the PID values and motor functions
   public Subsystem_Tower_Lift() {
+    //sets the ramprate of the motor to spin up to speed in quarter second
     mtTower1.setClosedLoopRampRate(0.25);
 
+    //switches the limit switches to normally closed to allow the motor to move until it hits them
     mtTower1.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
     mtTower1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
 
+    //Creates PID variables and declares the values of them
     kP = 0.8; 
     kI = 0;
     kD = 80; 
@@ -53,6 +56,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
     kMaxOutput = 0.45; 
     kMinOutput = -0.7;
 
+    //sets the PID controller values to the PID variables
     pidTower1.setP(kP);
     pidTower1.setI(kI);
     pidTower1.setD(kD);
@@ -75,6 +79,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
     }
   }
 
+  //creates a function to set the position of the tower
   public void SetPosition(double dtowerHeight) {
     pidTower1.setReference(dtowerHeight, ControlType.kPosition);
   }

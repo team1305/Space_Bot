@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Subsystem_Compressor_Power;
 import frc.robot.subsystems.Subsystem_Drive;
 import frc.robot.subsystems.Subsystem_Intake;
-import frc.robot.subsystems.Subsystem_Line_Sensing;
 import frc.robot.subsystems.Subsystem_RGBLED_CAN;
 import frc.robot.subsystems.Subsystem_Tower_Lift;
 import frc.robot.subsystems.Subsystem_Tower_Rotation;
@@ -39,7 +38,6 @@ public class Robot extends TimedRobot {
   public static Subsystem_Winch winch = new Subsystem_Winch();
   public static Subsystem_Tower_Lift towerLift = new Subsystem_Tower_Lift();
   public static Subsystem_RGBLED_CAN rgbLedController = new Subsystem_RGBLED_CAN();
-  public static Subsystem_Line_Sensing lineSensing = new Subsystem_Line_Sensing();
   public static OI oi;
 
   //creates a sendable chooser -- isnt used at all

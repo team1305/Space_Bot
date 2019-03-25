@@ -46,7 +46,7 @@ public class OI {
 	Button btn1_LS = new JoystickButton(joyxbox1, 9);  //xbox "Left Stick Click" Button 9
   Button btn1_RS = new JoystickButton(joyxbox1, 10);  //xbox "Right Stick Click" Button 10
 
-    //declares button mapping of the joyxbox1 controller
+  //declares button mapping of the joyxbox2 controller
 	Button btn2_A = new JoystickButton(joyxbox2, 1);  //xbox "A" Button 1
 	Button btn2_B = new JoystickButton(joyxbox2, 2); //xbox "B" Button 2
 	Button btn2_X = new JoystickButton(joyxbox2, 3); //xbox "X" Button 3
@@ -99,7 +99,7 @@ public class OI {
     ////xbox "X Axis 5" Right Stick - 
     ////xbox "Y Axis 4" Right Stick -
     ////xbox "Axis 3" Left Trigger - Kick Hatch
-    ////xbox "Axis 3" Right Trigger - Slow spit
+    ////xbox "Axis 3" Right Trigger - tower mid level
     ////xbox "Up" Direction Pad - Tower Forward
     ////xbox "Down" Direction Pad - Tower Backward
     ////xbox "Left" Direction Pad - Tower Leftside

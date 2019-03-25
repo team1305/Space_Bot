@@ -33,6 +33,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   //creates a power constant for tower rotation
   private static double TOWERPOWERCONSTANT = 0.5;
 
+  //runs when subsystem is initialized
   public Subsystem_Tower_Rotation() {
 
     //limits tower motor max speed
@@ -61,12 +62,12 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     mtRotate.set(0);
   }
 
-  //sets tower to turn left
+  //sets tower to turn left -- unused
   public void TowerLeft() {
     mtRotate.set(TOWERPOWERCONSTANT);
   }
 
-  //sets tower to turn right
+  //sets tower to turn right -- unused
   public void TowerRight() {
     mtRotate.set(-TOWERPOWERCONSTANT);
   }
@@ -76,7 +77,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     return intPOVValue;
   }
 
-  //gets the position
+  //gets the position of the tower
   public double getPosition() {
     return mtRotate.getSelectedSensorPosition(0);  
   }
@@ -88,14 +89,14 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     mtRotate.config_kD(0, 1.6, 0); //1
   }
 
-  //not sure why there is a second function
+  //sets the PID for the tower but different -- unused
   public void setPID2 () {
     mtRotate.config_kP(0, 0.05, 0);  //0.05
     mtRotate.config_kI(0, 0.0, 0);  //0.01
     mtRotate.config_kD(0, 1.6, 0); //1
   }
 
-  //uses PID loop to hold tower in requested position
+  //uses PID loop to hold tower in requested position -- unused
   public void holdPosition(double requestedPosition) {
     mtRotate.set(ControlMode.Position, requestedPosition );
   }
@@ -109,7 +110,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
     } 
   }
 
-  //again, not sure why there is a second function of this
+  //this is for if we want a more aggressive tower spin -- unused
   public void SetPosition2(double towerRotation) {
     if (towerRotation <= 60000 && towerRotation >= -119000) {
       Robot.tower.setPID2();
@@ -133,7 +134,6 @@ public class Subsystem_Tower_Rotation extends Subsystem {
       //puts data to the intPOV variable to make code shorter
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
       
-
       //checks to see if the wrist is down and if it is does not run
       if (!Robot.intake.bWristIsDown) {
         if (Robot.oi.getJoystickOperator().getRawButton(8)) { //Start button

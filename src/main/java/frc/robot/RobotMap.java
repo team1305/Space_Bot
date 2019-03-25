@@ -67,6 +67,7 @@ public class RobotMap {
   public static Solenoid slndClimbRelease = new Solenoid(1);
   public static Solenoid slndTowerLEDs = new Solenoid(0);
 
+  //runs on initialize
   public static void init() {    
 
     //because the tower likes to spin -- this doesn't actually work

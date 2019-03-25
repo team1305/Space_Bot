@@ -12,8 +12,10 @@ import frc.robot.Robot;
 
 public class Command_Winch extends Command {
 
+  //creates a variable to determine if the lock is dropped or not
   private boolean bReleased;
 
+  //on initialize defaults the state of the winch
   public Command_Winch() {
 
     bReleased = false;

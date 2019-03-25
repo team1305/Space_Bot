@@ -78,10 +78,12 @@ public class Subsystem_Winch extends Subsystem {
     this.slndRelease.set(false);
   }
 
+  //turns tower LEDs
   public void LEDsOn() {
     this.slndlights.set(true);
   }
 
+  //turns the tower LEDs off
   public void LEDsOFF() {
     this.slndlights.set(false);
   }

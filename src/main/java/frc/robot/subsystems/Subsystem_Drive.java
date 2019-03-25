@@ -97,6 +97,7 @@ public class Subsystem_Drive extends Subsystem {
     drRobotDrive.arcadeDrive(0, 0);
   }
 
+  //sets the speed for climbing drive thingy
   public void ClimbSpeed() {
     drRobotDrive.arcadeDrive(-0.7, 0);
   }
