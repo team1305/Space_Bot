@@ -82,6 +82,9 @@ public class Subsystem_Tower_Lift extends Subsystem {
   //puts tower to mid level for cargoship / loading station
   public void CargoLoading() {
     SetPosition(-16);
+    if (bTowerLowerIsUp) {
+      bTowerLowerIsUp = false;
+    }
   }
 
   //Changes tower lower level to true and raises the tower
