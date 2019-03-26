@@ -94,7 +94,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
 
   //Changes tower lower level to true and raises the tower
   public void Level1Up() {
-    SetPosition(-38.65);
+    SetPosition(-38.6);
     bTowerLowerIsUp = true;
   }
 
