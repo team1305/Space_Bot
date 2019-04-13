@@ -8,9 +8,11 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
@@ -28,6 +30,7 @@ public class Subsystem_Winch extends Subsystem {
 
   //grabs port ID of the solenoid
   private final Solenoid slndRelease = RobotMap.slndClimbRelease;
+  private final Solenoid slndSpear = RobotMap.slndSpear;
   private final Solenoid slndlights = RobotMap.slndTowerLEDs;
 
   //on initialization of the subsystem sets motor settings
@@ -35,11 +38,21 @@ public class Subsystem_Winch extends Subsystem {
     mtWinch1.setOpenLoopRampRate(0.4);
     mtWinch2.setOpenLoopRampRate(0.4);
     //loopcounter = 0;
-    mtWinch2.follow(mtWinch1);    
+    mtWinch2.follow(mtWinch1);   
+    mtWinch1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen); 
   }
 
   @Override
   public void initDefaultCommand() {
+  }
+
+  public void UpdateLimitSwitch() {
+    boolean bLimit = mtWinch1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen).get();
+    // Robot.oi.SetSpearButton(bLimit);
+    System.out.println("LimitSwitch = " + bLimit);
+    if (!bLimit && Robot.oi.joyxbox1.getRawButton(2)) {
+      //Spear();
+    }
   }
 
   //Turns motors to winch climb up
@@ -76,6 +89,10 @@ public class Subsystem_Winch extends Subsystem {
   //rotates lock down
   public void Lock() {
     this.slndRelease.set(false);
+  }
+
+  public void Spear() {
+    this.slndSpear.set(true);
   }
 
   //turns tower LEDs

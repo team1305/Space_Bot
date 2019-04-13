@@ -42,7 +42,7 @@ public class Subsystem_Intake extends Subsystem {
     bHatchGrabbed = true;
     bHatchKicked = false;
 
-    mtIntake.setOpenLoopRampRate(0.2);
+    mtIntake.setOpenLoopRampRate(0.05);
     //jaredRocks(true);
   }
 

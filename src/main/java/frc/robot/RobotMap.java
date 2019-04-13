@@ -66,6 +66,7 @@ public class RobotMap {
   public static Solenoid slndHatchKickers = new Solenoid(7);
   public static Solenoid slndClimbRelease = new Solenoid(1);
   public static Solenoid slndTowerLEDs = new Solenoid(0);
+  public static Solenoid slndSpear = new Solenoid(5);
 
   //runs on initialize
   public static void init() {    

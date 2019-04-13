@@ -90,6 +90,9 @@ public class Subsystem_Tower_Lift extends Subsystem {
     if (bTowerLowerIsUp) {
       bTowerLowerIsUp = false;
     }
+    if (bTowerUpperIsUp) {
+      Level2Down();
+    }
   }
 
   //Changes tower lower level to true and raises the tower

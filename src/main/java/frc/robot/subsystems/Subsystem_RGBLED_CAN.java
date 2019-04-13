@@ -49,6 +49,8 @@ public class Subsystem_RGBLED_CAN extends Subsystem {
 				LEDGreen();
 			} else if (Robot.intake.bOuttakeOn) {
 				LEDRed();
+			} else if (Robot.limelight.targetValid()) {
+				LEDMagenta();
 			} else if (Robot.drive.bIsLow) {
 				LEDBlue();
 			} else if (!Robot.drive.bIsLow) {

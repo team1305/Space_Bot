@@ -11,6 +11,7 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -95,6 +96,10 @@ public class Subsystem_Drive extends Subsystem {
   //stops the drive train
   public void DriveStop() {
     drRobotDrive.arcadeDrive(0, 0);
+  }
+
+  public void DriveTank(double leftValue, double rightValue) {
+    drRobotDrive.tankDrive(leftValue, rightValue);
   }
 
   //sets the speed for climbing drive thingy

@@ -37,8 +37,10 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   public Subsystem_Tower_Rotation() {
 
     //limits tower motor max speed
-    mtRotate.configPeakOutputForward(0.7);
-    mtRotate.configPeakOutputReverse(-0.7);
+    mtRotate.configPeakOutputForward(0.8); // 0.8
+    mtRotate.configPeakOutputReverse(-0.8); // -0.8
+
+    mtRotate.configClosedloopRamp(0.05);
 
     //creates the encoder for the tower
     mtRotate.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -103,7 +105,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   //rotates tower to specified position and uses PID to hold it
   public void SetPosition(double towerRotation) {
-    if (towerRotation <= 60000 && towerRotation >= -119000) {
+    if (towerRotation <= 60000 && towerRotation >= -131500) {
       Robot.tower.setPID();
       mtRotate.set(ControlMode.Position, towerRotation );
       //Robot.tower.holdPosition(Robot.tower.getPosition());
@@ -112,7 +114,7 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   //this is for if we want a more aggressive tower spin -- unused
   public void SetPosition2(double towerRotation) {
-    if (towerRotation <= 60000 && towerRotation >= -119000) {
+    if (towerRotation <= 60000 && towerRotation >= -131500) {
       Robot.tower.setPID2();
       mtRotate.set(ControlMode.Position, towerRotation );
       //Robot.tower.holdPosition(Robot.tower.getPosition());

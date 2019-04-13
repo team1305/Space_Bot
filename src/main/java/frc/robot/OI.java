@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Command_Compressor_OFF;
 import frc.robot.commands.Command_Compressor_ON;
@@ -16,6 +17,7 @@ import frc.robot.commands.Command_Intake;
 import frc.robot.commands.Command_Lock;
 import frc.robot.commands.Command_Outtake;
 import frc.robot.commands.Command_Shift_Gear;
+import frc.robot.commands.Command_Spear;
 import frc.robot.commands.Command_Toggle_Hatch;
 import frc.robot.commands.Command_Toggle_Wrist;
 import frc.robot.commands.Command_Tower_Drop;
@@ -57,6 +59,12 @@ public class OI {
 	Button btn2_Start = new JoystickButton(joyxbox2, 8);  //xbox "Start" Button 8
 	Button btn2_LS = new JoystickButton(joyxbox2, 9);  //xbox "Left Stick Click" Button 9
   Button btn2_RS = new JoystickButton(joyxbox2, 10);  //xbox "Right Stick Click" Button 10
+
+  InternalButton btn_Spear = new InternalButton();
+
+  public void SetSpearButton(Boolean s) {
+      btn_Spear.setPressed(s);
+  }
 
   public OI() {
  
@@ -104,6 +112,10 @@ public class OI {
     ////xbox "Down" Direction Pad - Tower Backward
     ////xbox "Left" Direction Pad - Tower Leftside
     ////xbox "Right" Direction Pad - Tower Rightside
+
+    if (btn_Spear.get() == false) {
+      // new Command_Spear();
+    }
   }
   
   //returns joyxbox1 whenever getJoystickDriver is called

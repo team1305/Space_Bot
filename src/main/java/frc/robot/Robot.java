@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,6 +21,7 @@ import frc.robot.subsystems.Subsystem_RGBLED_CAN;
 import frc.robot.subsystems.Subsystem_Tower_Lift;
 import frc.robot.subsystems.Subsystem_Tower_Rotation;
 import frc.robot.subsystems.Subsystem_Winch;
+import frc.robot.subsystems.Subsystem_Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,6 +40,8 @@ public class Robot extends TimedRobot {
   public static Subsystem_Winch winch = new Subsystem_Winch();
   public static Subsystem_Tower_Lift towerLift = new Subsystem_Tower_Lift();
   public static Subsystem_RGBLED_CAN rgbLedController = new Subsystem_RGBLED_CAN();
+  public static Subsystem_Limelight limelight = new Subsystem_Limelight();
+  public static UsbCamera camera;
   public static OI oi;
 
   //creates a sendable chooser -- isnt used at all
@@ -57,7 +61,7 @@ public class Robot extends TimedRobot {
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     // SmartDashboard.putData("Auto mode", m_chooser);
-    SmartDashboard.putBoolean("Tower Level 1", towerLift.bTowerLowerIsUp);
+    SmartDashboard.putBoolean("Tower Level 1", towerLift.bTowerLowerIsUp); 
     SmartDashboard.putBoolean("Tower Level 2", towerLift.bTowerUpperIsUp);
     SmartDashboard.putBoolean("Intake", intake.bWristIsDown);
     SmartDashboard.putBoolean("J Hook", intake.bHatchGrabbed);
@@ -65,9 +69,30 @@ public class Robot extends TimedRobot {
     Robot.rgbLedController.RGBledCAN();
 
     //starts camera stream
-    CameraServer.getInstance().startAutomaticCapture();
-  }
 
+    try
+    {
+      camera = CameraServer.getInstance().startAutomaticCapture();
+
+      var settings = camera.enumerateProperties();
+      for(var setting: settings)
+      {
+        System.out.println("setting: " + setting.getName());
+      }
+
+    }
+    catch(Exception ex)
+    {
+      System.out.println("ERROR: setting camera: " + ex.getMessage()) ;
+    }
+    
+    // camera.setResolution(640, 480);
+    //camera.setResolution(320, 240);
+    // CameraServer.getInstance().startAutomaticCapture();
+    //CameraServer.getProperty("compression").set(10);
+    // camera.getProperty("compression").set(10);
+    
+  }
   /**
    * This function is called every robot packet, no matter the mode. Use
    * this for items like diagnostics that you want ran during disabled,
@@ -152,6 +177,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    winch.UpdateLimitSwitch();
   }
 
   /**
