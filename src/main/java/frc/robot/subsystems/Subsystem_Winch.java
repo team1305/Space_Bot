@@ -50,8 +50,8 @@ public class Subsystem_Winch extends Subsystem {
     boolean bLimit = mtWinch1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen).get();
     // Robot.oi.SetSpearButton(bLimit);
     System.out.println("LimitSwitch = " + bLimit);
-    if (!bLimit && Robot.oi.joyxbox1.getRawButton(2)) {
-      //Spear();
+    if (bLimit && Robot.oi.joyxbox1.getRawButton(2)) {
+      Spear();
     }
   }
 

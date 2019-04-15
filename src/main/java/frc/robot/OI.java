@@ -60,11 +60,11 @@ public class OI {
 	Button btn2_LS = new JoystickButton(joyxbox2, 9);  //xbox "Left Stick Click" Button 9
   Button btn2_RS = new JoystickButton(joyxbox2, 10);  //xbox "Right Stick Click" Button 10
 
-  InternalButton btn_Spear = new InternalButton();
+  // InternalButton btn_Spear = new InternalButton();
 
-  public void SetSpearButton(Boolean s) {
-      btn_Spear.setPressed(s);
-  }
+  // public void SetSpearButton(Boolean s) {
+  //     btn_Spear.setPressed(s);
+  // }
 
   public OI() {
  
@@ -113,9 +113,9 @@ public class OI {
     ////xbox "Left" Direction Pad - Tower Leftside
     ////xbox "Right" Direction Pad - Tower Rightside
 
-    if (btn_Spear.get() == false) {
-      // new Command_Spear();
-    }
+    // if (btn_Spear.get() == false) {
+    //   // new Command_Spear();
+    // }
   }
   
   //returns joyxbox1 whenever getJoystickDriver is called
