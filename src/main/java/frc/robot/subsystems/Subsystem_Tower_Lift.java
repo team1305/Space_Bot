@@ -24,9 +24,12 @@ import frc.robot.commands.Command_Cargo_Loading;
  */
 public class Subsystem_Tower_Lift extends Subsystem {
 
+  private boolean bNeedLift = Robot.tower.bNeedToLift;
+
   //creates boolean variables to determine tower state
   public boolean bTowerLowerIsUp = false;
   public boolean bTowerUpperIsUp = false;
+  public boolean bTowerCargo = false;
 
   //creates variables for PID control
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
@@ -123,8 +126,10 @@ public class Subsystem_Tower_Lift extends Subsystem {
   public void Lift() {
     if (!bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level1Up();
+      bTowerCargo = false;
     } else if (bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level2Up();
+      bTowerCargo = false;
     }
     SmartDashboard.putBoolean("Tower Level 1", bTowerLowerIsUp);
     SmartDashboard.putBoolean("Tower Level 2", bTowerUpperIsUp);
@@ -134,10 +139,13 @@ public class Subsystem_Tower_Lift extends Subsystem {
   public void Drop() {
     if (bTowerLowerIsUp && bTowerUpperIsUp) {
       Level2Down();
+      bTowerCargo = false;
     } else if (bTowerLowerIsUp && !bTowerUpperIsUp) {
       Level1Down();
+      bTowerCargo = false;
     } else {
       Level1Down();
+      bTowerCargo = false;
     }
     SmartDashboard.putBoolean("Tower Level 1", bTowerLowerIsUp);
     SmartDashboard.putBoolean("Tower Level 2", bTowerUpperIsUp);
@@ -147,6 +155,15 @@ public class Subsystem_Tower_Lift extends Subsystem {
   //check to see if left trigger is pulled then raises to cargoship height
   public void MidLift() {
     if (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(2)) == 1) {
+      CargoLoading();
+      bTowerCargo = true;
+    }
+  }
+
+  public void ShipAvoidance() {
+    if (bTowerCargo && bNeedLift) {
+      Level1Up();
+    } else if (bTowerCargo && !bNeedLift) {
       CargoLoading();
     }
   }

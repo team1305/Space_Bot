@@ -24,6 +24,10 @@ import frc.robot.commands.Command_Tower_Loop;
  */
 public class Subsystem_Tower_Rotation extends Subsystem {
 
+  public boolean bNeedToLift = false;
+  private double dPosition = 0;
+  private double dError = 3000; 
+
   //creates int for controller positioning
   private int intPOV;
   
@@ -37,8 +41,8 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   public Subsystem_Tower_Rotation() {
 
     //limits tower motor max speed
-    mtRotate.configPeakOutputForward(0.8); // 0.8
-    mtRotate.configPeakOutputReverse(-0.8); // -0.8
+    mtRotate.configPeakOutputForward(1); // 0.8
+    mtRotate.configPeakOutputReverse(-1); // -0.8
 
     mtRotate.configClosedloopRamp(0.05);
 
@@ -86,9 +90,9 @@ public class Subsystem_Tower_Rotation extends Subsystem {
 
   //sets the PID loop for the tower
   public void setPID () {
-    mtRotate.config_kP(0, 0.07, 0);  //0.05
+    mtRotate.config_kP(0, 0.07, 0);  //0.07
     mtRotate.config_kI(0, 0.0, 0);  //0.0
-    mtRotate.config_kD(0, 1.6, 0); //1
+    mtRotate.config_kD(0, 3.0, 0); //1.6
   }
 
   //sets the PID for the tower but different -- unused
@@ -124,35 +128,67 @@ public class Subsystem_Tower_Rotation extends Subsystem {
   //resets the tower encoder -- unused currently, need to find defaulte position of limts
   public void resetEncoder() {
        mtRotate.setSelectedSensorPosition(0, 0, 10); // sensorPos, PIDIdx, timeoutMD
-  }  
+       SetPosition(0);
+  } 
+  
+  public void NeedToLift() {
+    if (getPosition() < (dPosition - dError) || getPosition() > (dPosition + dError)) {
+      bNeedToLift = true;
+    } else {
+      bNeedToLift = false;
+    }
+  }
 
   //this is the "AI" for the tower rotation
   public void TowerAI() {
+
+    NeedToLift();
+
     //puts the encoder value on the dashboard
     SmartDashboard.putNumber("Encoder Value", getPosition());
-    
+    // SmartDashboard.putBoolean("Need to lift", bNeedToLift);
+    // SmartDashboard.putBoolean("Mid level", Robot.towerLift.bTowerCargo);
+
+    if (Robot.oi.getJoystickOperator().getRawButton(10)) {
+       resetEncoder();
+    }
+
     //first determines if the POV is untouched
     if (GetPOV(Robot.oi.getJoystickOperator().getPOV()) != -1) {
       //puts data to the intPOV variable to make code shorter
       intPOV = GetPOV(Robot.oi.getJoystickOperator().getPOV());
       
       //checks to see if the wrist is down and if it is does not run
+
       if (!Robot.intake.bWristIsDown) {
+                
         if (Robot.oi.getJoystickOperator().getRawButton(8)) { //Start button
+          
+          
           if (intPOV == 90) {
-            SetPosition2(getPosition() + 3330); //approx 5 deg (approx 666 per deg)
+            dPosition = dPosition + 666;
+            SetPosition(dPosition); //3330); //approx 5 deg (approx 666 per deg)
           } else if (intPOV == 270) {
-            SetPosition2(getPosition() - 3330);
+            dPosition = dPosition - 666;
+            SetPosition(dPosition); //3330);
           }
         } else {
           if (intPOV == 0) { //forward
             SetPosition(0);
+            dPosition = 0;
+            Robot.towerLift.ShipAvoidance();
           } else if (intPOV == 90) { //right
             SetPosition(59363);
+            dPosition = 59363;
+            Robot.towerLift.ShipAvoidance();
           } else if (intPOV == 180) { //backward
-           SetPosition(-118726);
+            SetPosition(-118726);
+            dPosition = -118726;
+            Robot.towerLift.ShipAvoidance();
           } else if (intPOV == 270) { //left
             SetPosition(-59363);
+            dPosition = -59363;
+            Robot.towerLift.ShipAvoidance();
           }
         }
       }

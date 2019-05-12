@@ -21,6 +21,8 @@ import frc.robot.RobotMap;
  */
 public class Subsystem_Winch extends Subsystem {
 
+  private boolean bRearIsLifted = false;
+
   //creates a loop counter to slow the climb -- currently unused
   private int loopcounter;
   
@@ -30,7 +32,7 @@ public class Subsystem_Winch extends Subsystem {
 
   //grabs port ID of the solenoid
   private final Solenoid slndRelease = RobotMap.slndClimbRelease;
-  private final Solenoid slndSpear = RobotMap.slndSpear;
+  private final Solenoid slndRearLift = RobotMap.slndRearLift;
   private final Solenoid slndlights = RobotMap.slndTowerLEDs;
 
   //on initialization of the subsystem sets motor settings
@@ -50,9 +52,9 @@ public class Subsystem_Winch extends Subsystem {
     boolean bLimit = mtWinch1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen).get();
     // Robot.oi.SetSpearButton(bLimit);
     System.out.println("LimitSwitch = " + bLimit);
-    if (bLimit && Robot.oi.joyxbox1.getRawButton(2)) {
-      Spear();
-    }
+    // if (bLimit && Robot.oi.joyxbox1.getRawButton(2)) {
+    //   Spear();
+    // }
   }
 
   //Turns motors to winch climb up
@@ -91,18 +93,38 @@ public class Subsystem_Winch extends Subsystem {
     this.slndRelease.set(false);
   }
 
-  public void Spear() {
-    this.slndSpear.set(true);
+  public void LiftRear() {
+    this.slndRearLift.set(true);
+    bRearIsLifted = true;
   }
 
-  //turns tower LEDs
-  public void LEDsOn() {
-    this.slndlights.set(true);
+  public void DropRear() {
+    this.slndRearLift.set(false);
+    bRearIsLifted = false;
   }
 
-  //turns the tower LEDs off
-  public void LEDsOFF() {
-    this.slndlights.set(false);
+  public void ToggleRearLift() {
+    if (mtWinch1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen).get()) {
+      if (bRearIsLifted) {
+        DropRear();
+      } else {
+        LiftRear();
+      }
+    }
   }
+
+  // public void Spear() {
+  //   this.slndSpear.set(true);
+  // }
+
+  // //turns tower LEDs
+  // public void LEDsOn() {
+  //   this.slndlights.set(true);
+  // }
+
+  // //turns the tower LEDs off
+  // public void LEDsOFF() {
+  //   this.slndlights.set(false);
+  // }
 
 }

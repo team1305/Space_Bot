@@ -21,6 +21,10 @@ import frc.robot.commands.Command_Kick_Hatch;
  */
 public class Subsystem_Intake extends Subsystem {
 
+  public int iRetractCount = 0;
+  public int iRetractCountStop = 20; //50 loops 1 second
+  public boolean bRetractCount = false;
+
   //creates variables to determine if hatch is grabbed and state of intake wrist
   public boolean bWristIsDown;
   public boolean bHatchGrabbed;
@@ -165,15 +169,35 @@ public class Subsystem_Intake extends Subsystem {
 
   //main command for launching the hatch
   public void LaunchHatch() {
-    //creats a switch based on the value of the right trigger
-    switch (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3))) {
-      case 0:
-        DontKickHatch();
-      break;
-      case 1:
-        DropHatch();
-        KickHatch();
-      break;
+    SmartDashboard.putNumber("Trigger", GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3)));
+    SmartDashboard.putNumber("Retract Count", iRetractCount);
+    SmartDashboard.putBoolean("Is Counting", bRetractCount);
+
+    if (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3)) == 1) {
+      bRetractCount = true;
     }
+    if (bRetractCount && iRetractCount <= iRetractCountStop) {
+      DropHatch();
+      KickHatch();
+      iRetractCount ++;
+    }
+    if (iRetractCount >= iRetractCountStop) {
+      DontKickHatch();
+    }
+    if (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3)) == 0 && iRetractCount >= iRetractCountStop) {
+      bRetractCount = false;
+      iRetractCount = 0;
+    }
+
+    // //creats a switch based on the value of the right trigger
+    // switch (GetTrigger(Robot.oi.getJoystickOperator().getRawAxis(3))) {
+    //   case 0:
+    //     DontKickHatch();
+    //   break;
+    //   case 1:
+    //     DropHatch();
+    //     KickHatch();
+    //   break;
+    // }
   }
 }

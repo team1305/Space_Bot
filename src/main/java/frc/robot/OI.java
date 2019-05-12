@@ -16,6 +16,7 @@ import frc.robot.commands.Command_Compressor_ON;
 import frc.robot.commands.Command_Intake;
 import frc.robot.commands.Command_Lock;
 import frc.robot.commands.Command_Outtake;
+import frc.robot.commands.Command_Rear_Lift;
 import frc.robot.commands.Command_Shift_Gear;
 import frc.robot.commands.Command_Spear;
 import frc.robot.commands.Command_Toggle_Hatch;
@@ -78,8 +79,7 @@ public class OI {
     btn1_Back.whenPressed(new Command_Compressor_OFF());//xbox "Back" Button 7
     btn1_Start.whenPressed(new Command_Compressor_ON());//xbox "Start" Button 8
     btn1_LS.whenPressed(new Command_Shift_Gear());//xbox "Left Stick Click" Button 9
-    //btn1_RS.whileHeld();//xbox "Right Stick Click" Button 10
-    //btn1_RS.whileHeld();//xbox "Right Stick Click" Button 10
+    btn1_RS.whenPressed(new Command_Rear_Lift());//xbox "Right Stick Click" Button 10
     //xbox "X Axis" Left Stick - 
     ////xbox "Y Axis" Left Stick - Drive Forward and Reverse
     ////xbox "X Axis 5" Right Stick - 
