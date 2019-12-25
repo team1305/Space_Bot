@@ -37,8 +37,8 @@ public class Subsystem_Winch extends Subsystem {
 
   //on initialization of the subsystem sets motor settings
   public Subsystem_Winch() {
-    mtWinch1.setOpenLoopRampRate(0.4);
-    mtWinch2.setOpenLoopRampRate(0.4);
+    mtWinch1.setRampRate(0.4);
+    mtWinch2.setRampRate(0.4);
     //loopcounter = 0;
     mtWinch2.follow(mtWinch1);   
     mtWinch1.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen); 

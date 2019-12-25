@@ -8,22 +8,14 @@
 package frc.robot;
 
 import com.ctre.phoenix.CANifier;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 public class RobotMap {
   
   //declares sparkmax motor controllers used and digital ID of motor
@@ -43,11 +35,6 @@ public class RobotMap {
   public static CANEncoder enDriveRight2 = new CANEncoder(mtDriveRight2);
   public static CANEncoder enWinch1 = new CANEncoder(mtWinch1);
   public static CANEncoder enTowerLift = new CANEncoder(mtTowerLift);
-
-  //declares Digital input devices which in this case are line sensors
-  public static DigitalInput snsrLineSensorL = new DigitalInput(2);
-  public static DigitalInput snsrLineSensorR = new DigitalInput(1);
-  public static DigitalInput snsrLineSensorF = new DigitalInput(0);
 
   //declares CANifier for LED control
   public static CANifier RGBLEDController = new CANifier(20);
@@ -70,9 +57,6 @@ public class RobotMap {
 
   //runs on initialize
   public static void init() {    
-
-    //because the tower likes to spin -- this doesn't actually work
-    mtTowerRotate.setNeutralMode(NeutralMode.Brake);
   }
 
 

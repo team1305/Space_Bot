@@ -11,7 +11,6 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -58,15 +57,13 @@ public class Subsystem_Drive extends Subsystem {
   // Subsystem State Value
   private Double enLeftStart;
   private Double enRightStart;
-  private Double enLeftCurrent;
-  private Double enRightCurrent;
   
   //sets ramprate of drive motors -- now does things!
   public Subsystem_Drive() {
-    mtLeft1.setOpenLoopRampRate(0.4);
-    mtLeft2.setOpenLoopRampRate(0.4);
-    mtRight1.setOpenLoopRampRate(0.4);
-    mtRight2.setOpenLoopRampRate(0.4);
+    mtLeft1.setRampRate(0.4);
+    mtLeft2.setRampRate(0.4);
+    mtRight1.setRampRate(0.4);
+    mtRight2.setRampRate(0.4);
 
     // SmartDashboard.putNumber("dSquareFactor", dSquareFactor);
     // SmartDashboard.putNumber("dThrottleFactor", dThrottleFactor);
@@ -87,7 +84,7 @@ public class Subsystem_Drive extends Subsystem {
     else return 0;
   }
 
-  	private double ThrottleScale(double throttle,double input) {
+  private double ThrottleScale(double throttle,double input) {
 		return (JoystickDeadBand(input) * (1-(throttle*dThrottleFactor)));
 	}
 

@@ -44,7 +44,7 @@ public class Subsystem_Tower_Lift extends Subsystem {
   //on initialize sets the PID values and motor functions
   public Subsystem_Tower_Lift() {
     //sets the ramprate of the motor to spin up to speed in quarter second
-    mtTower1.setClosedLoopRampRate(0.25);
+    mtTower1.setRampRate(0.25);
 
     //switches the limit switches to normally closed to allow the motor to move until it hits them
     mtTower1.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyClosed);
